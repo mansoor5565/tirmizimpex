@@ -86,7 +86,7 @@
         @endif
         @if (session()->has('DeleteSuccess'))
             <script>
-                swal("Deleted!", "Venue has been deleted successfully.", "success");
+                swal("Deleted!", "User has been deleted successfully.", "success");
             </script>
         @endif
 
@@ -94,7 +94,7 @@
             function deleteVenue(id) {
                 swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this venue!",
+                        text: "Once deleted, you will not be able to recover this User!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
