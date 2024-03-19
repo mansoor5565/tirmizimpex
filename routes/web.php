@@ -12,6 +12,7 @@ use App\Http\Controllers\Accessories_Inventory_Controller;
 use App\Http\Controllers\Leather_Inventory_Controller; 
 use App\Http\Controllers\Leather_Vendor_Controller; 
 use App\Http\Controllers\Menu;
+use App\Http\Controllers\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -107,4 +108,6 @@ Route::get('/menu/delete/{id}', [Menu::class, 'destroy']);
 
 
 
-//dumm
+//user registeration
+Route::resource('users',User::class);
+Route::get('/users/delete/{id}', [User::class, 'destroy']);
