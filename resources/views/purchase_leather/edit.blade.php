@@ -21,19 +21,19 @@
                             @csrf
                             <div class="col-12">
                                 <label for="leatherSelect" class="form-label">Choose Leather</label>
-<select class="form-select mb-2" id="leatherSelect" name="leather[]" multiple>
-    @foreach ($leathers_color as $leather_color)
-        @php
-            $selected = $purchase_leather_color->contains('leather_color_id', $leather_color->id)->get()->isNotEmpty();
-        @endphp
-        <option value="{{ $leather_color->id }}" data-quantity="{{ $leather_color->quantity }}" 
-            @if($selected) 
-                selected 
-            @endif>
-            {{ $leather_color->leathers->type.' '.$leather_color->color }}
-        </option>
-    @endforeach
-</select>
+                                <select class="form-select mb-2" id="leatherSelect" name="leather[]" multiple>
+                                    @foreach ($leathers_color as $leather_color)
+                                        @php
+                                            $selected = $purchase_leather_color->contains('leather_color_id', $leather_color->id);
+                                        @endphp
+                                        <option value="{{ $leather_color->id }}" data-quantity="{{ $leather_color->quantity }}" 
+                                            @if($selected) 
+                                                selected 
+                                            @endif>
+                                            {{ $leather_color->leathers->type.' '.$leather_color->color }}
+                                        </option>
+                                    @endforeach
+                                </select>
 <span class='text-danger'>
     @error('leather')
     {{ $message }}

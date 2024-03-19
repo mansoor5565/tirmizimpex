@@ -97,6 +97,10 @@ class Leather_Inventory_Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'leathers' => 'required', 
+            'leather_quantities' => 'required'
+        ]);
         $leather_inventory=Leather_Inventory_Model::find($id);
         foreach ($request->leathers as $key => $leatherId) {
              $leather_inventory->leathercolor_id = $leatherId;

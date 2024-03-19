@@ -97,6 +97,13 @@ class Purchase_Accessories_Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate(
+            [
+                'accessories'=>'required',
+                'accessory_quantities'=>'required',
+                'accessory_costs'=>'required'
+            ]
+        );
         foreach ($request->accessories as $key => $accessorieId) {
             $purchase_accessories=Purchase_Accessories_Model::find($id);
             $purchase_accessories->accessories_id = $accessorieId;

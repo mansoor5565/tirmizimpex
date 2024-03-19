@@ -48,6 +48,7 @@ class ProductController extends Controller
                 'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]\*$/'],
                 'notes'=>'required',
                 'image'=>'required',
+                'file'=>'required',
                 'cutting_cost'=>'required',
                 'stitching_cost'=>'required',
                 'option'=>'required',
@@ -159,6 +160,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate(
+            [
+                'name'=>'required',
+                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]\*$/'],
+                'notes'=>'required',
+                'image'=>'required',
+                'file'=>'required',
+                'cutting_cost'=>'required',
+                'stitching_cost'=>'required',
+                'option'=>'required',
+            ]
+            );
         $product = Product_Model::find($id);
         $productImage = ProductImage_Model::where('product_id', $id)->first();
         $productsize = ProductSize_Model::where('product_id', $id)->first();

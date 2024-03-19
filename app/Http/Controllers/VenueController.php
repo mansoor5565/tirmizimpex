@@ -72,6 +72,11 @@ class VenueController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate(
+            [
+                'name'=>'required',
+            ]
+            );
         $venue = Venue::find($id);
         $venue->name=$request['name'];
         $venue->save();

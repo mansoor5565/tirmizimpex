@@ -75,6 +75,13 @@ class Leather_Vendor_Controller extends Controller
     
     public function update(Request $request, string $id)
     {
+        $request->validate(
+            [
+                'name'=>'required',
+                'address'=>'required',
+                'contact_number'=>'required',      
+            ]
+            );
         $leather_vendor=Leather_Vendor_Model::find($id);
         $leather_vendor->name = $request->input('name'); 
         $leather_vendor->address = $request->input('address'); 

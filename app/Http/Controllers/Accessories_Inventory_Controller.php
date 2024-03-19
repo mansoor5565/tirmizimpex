@@ -78,6 +78,10 @@ class Accessories_Inventory_Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'accessories' => 'required', 
+            'quantity_on_hand' => 'required'
+        ]);
         $accessories_inventory=Accessories_Inventory_Model::find($id);
         $accessories_inventory->accessories_id = $request->input('accessories'); 
         $accessories_inventory->quantity_on_hand = $request->input('quantity_on_hand'); 

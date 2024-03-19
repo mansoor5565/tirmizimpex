@@ -295,7 +295,7 @@
                                     <input type="file" name="file[]" multiple="multiple" class="form-control"
                                         id="inputMultipleImages2" onchange="previewMultipleImages(this)">
                                     <span class='text-danger'>
-                                        @error('notes')
+                                        @error('file')
                                             {{ $message }}
                                         @enderror
                                     </span>

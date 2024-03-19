@@ -62,7 +62,12 @@
                                     @endforeach
                                 </select>
                                 <input type="text" name="other_type" class="form-control mt-2" placeholder="Enter Other Type(Optional)">
-                            </div>                                                  
+                            </div>   
+                            <span class='text-danger'>
+                                @error('type')
+                                    {{ $message }}
+                                @enderror
+                            </span>                                               
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>

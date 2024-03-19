@@ -24,7 +24,9 @@ use App\Http\Controllers\User;
 |
 */
 Route::redirect('/', '/dashboard');
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 // Route::middleware(['auth'])->group(function () {
    
 // });

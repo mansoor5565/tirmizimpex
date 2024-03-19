@@ -39,6 +39,14 @@ class Purchase_Leather_Controller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'leather'=>'required',
+                'leather_quantities'=>'required',
+                'leather_costs'=>'required',
+                'leather_vendors'=>'required',
+            ]
+            );
         foreach ($request->leather  as $key => $leathercolorid) {
             $purchase_leather=new Purchase_Leather_Model;
             $purchase_leather_color=new Purchase_Leather_Color_Model;
@@ -94,7 +102,7 @@ class Purchase_Leather_Controller extends Controller
         }
         else{
              $url=url('/purchase_leather/update').'/'.$id;
-            $data=compact('purchase_leather','leathers_color','leathervendor','url');
+            $data=compact('purchase_leather','purchase_leather_color','leathers_color','leathervendor','url');
             return view('purchase_leather.edit')->with($data);
         }
         
@@ -105,6 +113,14 @@ class Purchase_Leather_Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate(
+            [
+                'leather'=>'required',
+                'leather_quantities'=>'required',
+                'leather_costs'=>'required',
+                'leather_vendors'=>'required',
+            ]
+            );
         foreach ($request->leather  as $key => $leathercolorid) {
             $purchase_leather=Purchase_Leather_Model::find($id);
             $purchase_leather_color = Purchase_Leather_Color_Model::where('purchase_leather_id', $id)->first();

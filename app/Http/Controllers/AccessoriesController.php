@@ -82,6 +82,12 @@ class AccessoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name' => 'required|unique:accessories',
+            'other_type' => 'required_if:type,other',
+            'cost_per_unit' => 'required',
+            'unit' => 'required'
+        ]);
         $accessories = Accessories_Model::find($id);
         $accessories->name=$request['name'];
         $accessories->type = $request->filled('other_type') ? $request->input('other_type') : $request->input('type');
