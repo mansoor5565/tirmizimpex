@@ -11,6 +11,7 @@ use App\Http\Controllers\Purchase_Accessories_Controller;
 use App\Http\Controllers\Accessories_Inventory_Controller;
 use App\Http\Controllers\Leather_Inventory_Controller; 
 use App\Http\Controllers\Leather_Vendor_Controller; 
+use App\Http\Controllers\Leather_Transaction_Controller; 
 use App\Http\Controllers\Menu;
 use App\Http\Controllers\User;
 /*
@@ -103,6 +104,9 @@ Route::get('/leather_vendor/delete/{id}', [Leather_Vendor_Controller::class, 'de
 Route::get('/leather_vendor/edit/{id}', [Leather_Vendor_Controller::class, 'edit']);
 Route::get('/leather_vendor/show/{id}',[Leather_Vendor_Controller::class,'show']);
 Route::post('/leather_vendor/update/{id}',[Leather_Vendor_Controller::class,'update']);
+//leather_transaction
+Route::resource('/leather_transaction',Leather_Transaction_Controller::class);
+Route::get('/leather_transaction/show/{id}', [Leather_Transaction_Controller::class, 'show']);
 
 //Menu Management
 Route::resource('menu', Menu::class);

@@ -8,6 +8,7 @@ use App\Models\LeatherColor;
 use App\Models\Purchase_Leather_Model;
 use App\Models\Leather_Vendor_Model;
 use App\Models\Purchase_Leather_Color_Model;
+use App\Models\Leather_Transaction_Model;
 
 class Purchase_Leather_Controller extends Controller
 {
@@ -50,6 +51,8 @@ class Purchase_Leather_Controller extends Controller
         foreach ($request->leather  as $key => $leathercolorid) {
             $purchase_leather=new Purchase_Leather_Model;
             $purchase_leather_color=new Purchase_Leather_Color_Model;
+            $leathertransaction=new Leather_Transaction_Model;
+
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             $purchase_leather_color->leather_color_id=$leathercolorid;
            if(isset($request->leather_quantities[$key])){
@@ -69,9 +72,17 @@ class Purchase_Leather_Controller extends Controller
             }
             $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
             $purchase_leather->total_cost=$total;
+            $leathertransaction->amount=$purchase_leather->total_cost;
             $purchase_leather->save();
+            //purchase leather color
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
+            //leather transaction
+            $leathertransaction->transaction_date=$purchase_leather->created_at;
+            $leathertransaction->purchase_leather_id=$purchase_leather->id;
+            $leathertransaction->transaction_type='purchase';
+            $leathertransaction->description="Leather has been Purchased";
             $purchase_leather_color->save();
+            $leathertransaction->save();
         }
         $submitSuccess = true;
 
