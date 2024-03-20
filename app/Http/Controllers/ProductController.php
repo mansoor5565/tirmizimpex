@@ -42,18 +42,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate(
             [
                 'name'=>'required',
-                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]\*$/'],
+                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]*$/'],
                 'notes'=>'required',
-                'image'=>'required',
+                'images'=>'required',
                 'file'=>'required',
                 'cutting_cost'=>'required',
                 'stitching_cost'=>'required',
                 'option'=>'required',
             ]
             );
+       
             $filename = time() . "." . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('product_pictures'), $filename);
 

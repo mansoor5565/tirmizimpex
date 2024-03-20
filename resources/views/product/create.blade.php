@@ -278,32 +278,7 @@
                         <h5 class="card-title">Image Form</h5>
                         <div class="row g-3">
                             <div class="col-12">
-                                <label for="inputImage2" class="form-label ">Title Image</label>
-                                <input type="file" name="image" class="form-control mb-2" id="inputImage2"
-                                    onchange="previewImage(this)">
-                                <span class='text-danger'>
-                                    @error('image')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                                <div class="container" id="imagePreview">
-
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="inputMultipleImages2" class="form-label ">Multiple Images</label>
-                                    <input type="file" name="file[]" multiple="multiple" class="form-control"
-                                        id="inputMultipleImages2" onchange="previewMultipleImages(this)">
-                                    <span class='text-danger'>
-                                        @error('file')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                    <div class="container" id="multipleImagesPreview">
-
-                                    </div>
-                                </div>
-
+                                @include('components.multiple-image-picker-create')
                             </div>
                         </div>
                     </div>
@@ -393,7 +368,7 @@
     </section>
 
     {{-- leather script --}}
-    <script>
+    {{-- <script>
         function previewImage(input) {
             var container = document.getElementById('imagePreview');
             container.innerHTML = '';
@@ -437,7 +412,7 @@
             var inputElement = container.parentElement.previousElementSibling;
             inputElement.value = '';
         }
-    </script>
+    </script> --}}
 
     {{-- Accessories script --}}
     <script>
