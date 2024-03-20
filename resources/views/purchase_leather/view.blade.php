@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Leather Table</h1>
+        <h1>Purchase Leather Table</h1>
         
     </div><!-- End Page Title -->
     <section class="section">

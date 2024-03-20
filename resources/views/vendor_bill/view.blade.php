@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Leather Table</h1>
+        <h1>Vendor Bill Table</h1>
         
     </div><!-- End Page Title -->
     <section class="section">
@@ -14,25 +14,27 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>Leather</th>
-                                    <th>Amount</th>
-                                    <th>Description</th>
-                                    <th>Transaction Type</th>
-                                    <th data-type="date" data-format="YYYY/DD/MM">Transaction Date</th>
+                                    <th>Purchase Leather ID</th>
+                                    <th>Vendor </th>
+                                    <th>Remaining Balance</th>
+                                    <th data-type="date" data-format="YYYY/DD/MM"> Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($leathertransaction as $leathertransactions)
+                                @foreach ($vendorbill as $vendorbills)
                                     <tr>
-                                        <td>{{$leathertransactions->purchase_leather_id }}</td>
-                                        <td>{{$leathertransactions->amount }}</td>
-                                        <td>{{$leathertransactions->description}}</td>
-                                        <td>{{$leathertransactions->transaction_type}}</td>
-                                        <td>{{$leathertransactions->transaction_date }}</td>
+
+                                        <td>{{$vendorbills->leather_purchase_id}}</td>
+                                        <td>{{$vendorbills->leatherpurchase->leathervendors->name." ".$vendorbills->leather_vendor_id }}</td>
+                                        <td>{{ $vendorbills->remaining_balance }}</td>
+                                        <td>{{ $vendorbills->created_at }}</td>
                                         <td>
-                                            <a href="/leather_transaction/show/{{$leathertransactions->id}}" class="action-btn btn btn-success mr-2">
+                                            <a href="/leather_vendor_bill/show/{{$vendorbills->id}}" class="action-btn btn btn-success mr-2">
                                                 <i class="bi bi-eye"></i> <span>View</span>
+                                            </a>
+                                            <a href="//{{$vendorbills->id}}" class="action-btn btn btn-primary mr-2">
+                                                 <span>Pay Now</span>
                                             </a>
                                         </td>
                                     </tr>

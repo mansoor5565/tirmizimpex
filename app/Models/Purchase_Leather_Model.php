@@ -12,7 +12,9 @@ class Purchase_Leather_Model extends Model
     protected $primarykey="id";
     protected $fillable=['leather_vendor_id','total_cost'];
 
-    
+    public function leathervendorbills(){
+        return $this->hasMany(Vendor_Bill_Model::class,'leather_purchase_id');
+    }
     public function leathervendors(){
         return $this->belongsTo(Leather_Vendor_Model::class,'leather_vendor_id');
     }
