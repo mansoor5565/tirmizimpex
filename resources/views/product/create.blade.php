@@ -46,6 +46,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Product Info</h5>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="inputName4" class="form-label">Product Name</label>
@@ -58,7 +67,8 @@
                             </div>
                             <div class="col-12">
                                 <label for="inputModel4" class="form-label">Model No</label>
-                                <input type="text" class="form-control" id="inputModel4" name="model_no" placeholder="AAB-123A*">
+                                <input type="text" class="form-control" id="inputModel4" name="model_no"
+                                    placeholder="AAB-123*">
                                 <span class='text-danger'>
                                     @error('model_no')
                                         {{ $message }}
@@ -70,13 +80,15 @@
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="selectAllSizes">
-                                            <label class="form-check-label" for="selectAllSizes">Select All</label>
+                                            <input class="form-check-input" type="checkbox" id="selectAllLeatherSize">
+                                            <label class="form-check-label" for="selectAllLeatheSize">Select All leather
+                                                Size</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option1" name="option[]" value="XS">
+                                            <input class="form-check-input" type="checkbox" id="option1" name="option[]"
+                                                value="XS">
                                             <label class="form-check-label" for="option1">XS</label>
                                         </div>
                                     </div>
@@ -117,82 +129,82 @@
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option6" name="option[]"
-                                                value="3XL">
+                                            <input class="form-check-input" type="checkbox" id="option6"
+                                                name="option[]" value="3XL">
                                             <label class="form-check-label" for="option6">3XL</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label for="selectSizes" class="form-label">Select Jeans Size Options:</label><br>
-                                {{-- <div class="row">
+                                <label for="selectAllJeanSize" class="form-label">Select Jeans Size Options:</label><br>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAllJeanSize">
+                                        <label class="form-check-label" for="selectAllSizes">Select All Jean Size</label>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="selectAllSizes">
-                                            <label class="form-check-label" for="selectAllSizes">Select All</label>
-                                        </div>
-                                    </div> --}}
-                                    <div class="row">
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option7" name="option[]" value="28">
+                                            <input class="form-check-input" type="checkbox" id="option7"
+                                                name="option[]" value="28">
                                             <label class="form-check-label" for="option7">28</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option8" name="option[]"
-                                                value="30">
+                                            <input class="form-check-input" type="checkbox" id="option8"
+                                                name="option[]" value="30">
                                             <label class="form-check-label" for="option8">30</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option9" name="option[]"
-                                                value="32">
+                                            <input class="form-check-input" type="checkbox" id="option9"
+                                                name="option[]" value="32">
                                             <label class="form-check-label" for="option9">32</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option10" name="option[]"
-                                                value="34">
+                                            <input class="form-check-input" type="checkbox" id="option10"
+                                                name="option[]" value="34">
                                             <label class="form-check-label" for="option10">34</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option11" name="option[]"
-                                                value="36">
+                                            <input class="form-check-input" type="checkbox" id="option11"
+                                                name="option[]" value="36">
                                             <label class="form-check-label" for="option11">36</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option12" name="option[]"
-                                                value="38">
+                                            <input class="form-check-input" type="checkbox" id="option12"
+                                                name="option[]" value="38">
                                             <label class="form-check-label" for="option12">38</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option13" name="option[]"
-                                                value="40">
+                                            <input class="form-check-input" type="checkbox" id="option13"
+                                                name="option[]" value="40">
                                             <label class="form-check-label" for="option13">40</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option14" name="option[]"
-                                                value="42">
+                                            <input class="form-check-input" type="checkbox" id="option14"
+                                                name="option[]" value="42">
                                             <label class="form-check-label" for="option14">42</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option15" name="option[]"
-                                                value="44">
+                                            <input class="form-check-input" type="checkbox" id="option15"
+                                                name="option[]" value="44">
                                             <label class="form-check-label" for="option15">44</label>
                                         </div>
                                     </div>
@@ -203,27 +215,56 @@
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="option5" name="option[]"
-                                                value="Custom">
+                                            <input class="form-check-input" type="checkbox" id="option5"
+                                                name="option[]" value="Custom">
                                             <label class="form-check-label" for="option16">Custom</label>
                                         </div>
                                     </div>
-                                    
-                                    </div>
+
                                 </div>
                             </div>
-                          
-                          
-                            <div class="col-12">
-                                <label for="inputNotes4" class="form-label">Notes</label>
-                                <input type="text" name="notes" class="form-control" id="inputNotes4">
-                                <span class='text-danger'>
-                                    @error('notes')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                            {{-- <div class="col-12">
+                        </div>
+                        @push('script')
+                            <script>
+                                $(document).ready(function() {
+                                    var leathercheckbox = $('input[name="option[]"]').slice(0, 7);
+                                    var jeanscheckbox = $('input[name="option[]"]').slice(7, 7 + 9);
+                                    $('#selectAllJeanSize').change(function() {
+                                        if ($(this).is(':checked')) {
+                                            $('input[name="option[]"]:last').prop('checked', false);
+                                            jeanscheckbox.prop('checked', true);
+                                        } else {
+                                            jeanscheckbox.prop('checked', false);
+                                        }
+                                    });
+                                    $('#selectAllLeatherSize').change(function() {
+                                        if ($(this).is(':checked')) {
+                                            $('input[name="option[]"]:last').prop('checked', false);
+                                            leathercheckbox.prop('checked', true);
+                                        } else {
+                                            leathercheckbox.prop('checked', false);
+                                        }
+                                    });
+                                    $('input[name="option[]"]:last').change(function() {
+                                        $('#selectAllJeanSize').prop('checked', false);
+                                        $('#selectAllLeatherSizee').prop('checked', false);
+                                        jeanscheckbox.prop('checked', false);
+                                        leathercheckbox.prop('checked', false);
+                                    })
+                                });
+                            </script>
+                        @endpush
+
+                        <div class="col-12">
+                            <label for="inputNotes4" class="form-label">Notes</label>
+                            <input type="text" name="notes" class="form-control" id="inputNotes4">
+                            <span class='text-danger'>
+                                @error('notes')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        {{-- <div class="col-12">
                             <label for="name" class="form-label">Venue</label>
                             <input type="text" class="form-control" id="" name="venue">
                             <span class='text-danger'>
@@ -233,26 +274,25 @@
                             </span>
                         </div> --}}
 
-                            <div class="col-12">
-                                <label for="inputCuttingCost4" class="form-label">Cutting Cost</label>
-                                <input type="number" name="cutting_cost" class="form-control" id="inputCuttingCost4">
-                                <span class='text-danger'>
-                                    @error('cutting_cost')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputStitchingCost4" class="form-label">Stitching Cost</label>
-                                <input type="number" name="stitching_cost" class="form-control"
-                                    id="inputStitchingCost4">
-                                <span class='text-danger'>
-                                    @error('stitching_cost')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                            {{-- <div class="col-12">
+                        <div class="col-12">
+                            <label for="inputCuttingCost4" class="form-label">Cutting Cost</label>
+                            <input type="number" name="cutting_cost" class="form-control" id="inputCuttingCost4">
+                            <span class='text-danger'>
+                                @error('cutting_cost')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputStitchingCost4" class="form-label">Stitching Cost</label>
+                            <input type="number" name="stitching_cost" class="form-control" id="inputStitchingCost4">
+                            <span class='text-danger'>
+                                @error('stitching_cost')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        {{-- <div class="col-12">
                                 <label for="leatherSelect" class="form-label">Choose Leather</label>
                                 <select class="form-select mb-2" id="leatherSelect" name="leather">
                                     <!-- Populate select options using PHP -->
@@ -268,9 +308,9 @@
                                 <div id="selectedLeathers" class="selected-items-container"></div>
 
                             </div> --}}
-                        </div>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="col-lg-4">
                 <div class="card">
@@ -278,6 +318,8 @@
                         <h5 class="card-title">Image Form</h5>
                         <div class="row g-3">
                             <div class="col-12">
+                                @error('images')
+                                @enderror
                                 @include('components.multiple-image-picker-create')
                             </div>
                         </div>
@@ -524,54 +566,55 @@
             }
         });
     </script> --}}
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const selectAllCheckbox = document.getElementById('selectAllSizes');
             const sizeCheckboxes = document.querySelectorAll('input[name="option[]"]');
-    
+
             selectAllCheckbox.addEventListener('change', function() {
                 sizeCheckboxes.forEach(checkbox => {
                     checkbox.checked = selectAllCheckbox.checked;
                 });
             });
-    
+
             sizeCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
                     if (!this.checked) {
                         selectAllCheckbox.checked = false;
                     } else {
-                        const allChecked = Array.from(sizeCheckboxes).every(checkbox => checkbox.checked);
+                        const allChecked = Array.from(sizeCheckboxes).every(checkbox => checkbox
+                            .checked);
                         selectAllCheckbox.checked = allChecked;
                     }
                 });
             });
         });
-    </script>
+    </script> --}}
 
-<script>
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        const selectAllCheckbox = document.getElementById('selectAllSizes');
-        const sizeCheckboxes = document.querySelectorAll('input[name="option[]"]');
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectAllCheckbox = document.getElementById('selectAllSizes');
+            const sizeCheckboxes = document.querySelectorAll('input[name="option[]"]');
 
-        selectAllCheckbox.addEventListener('change', function() {
+            selectAllCheckbox.addEventListener('change', function() {
+                sizeCheckboxes.forEach(checkbox => {
+                    if (checkbox !== selectAllCheckbox) {
+                        checkbox.checked = selectAllCheckbox.checked;
+                    }
+                });
+            });
+
             sizeCheckboxes.forEach(checkbox => {
-                if (checkbox !== selectAllCheckbox) {
-                    checkbox.checked = selectAllCheckbox.checked;
-                }
+                checkbox.addEventListener('change', function() {
+                    if (!this.checked) {
+                        selectAllCheckbox.checked = false;
+                    } else {
+                        const allChecked = Array.from(sizeCheckboxes).every(checkbox => checkbox
+                            .checked);
+                        selectAllCheckbox.checked = allChecked;
+                    }
+                });
             });
         });
-
-        sizeCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                if (!this.checked) {
-                    selectAllCheckbox.checked = false;
-                } else {
-                    const allChecked = Array.from(sizeCheckboxes).every(checkbox => checkbox.checked);
-                    selectAllCheckbox.checked = allChecked;
-                }
-            });
-        });
-    });
-</script>
+    </script> --}}
 @endsection

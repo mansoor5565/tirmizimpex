@@ -10,7 +10,7 @@ use App\Models\Accessories_Model;
 use App\Models\ProductSize_Model;
 use App\Models\LeatherColor;
 use App\Models\ProductLeather_Model;
-
+use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     /**
@@ -42,46 +42,44 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // 'unique:product'
         $request->validate(
             [
-                'name'=>'required',
-                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]*$/'],
+                'name'=>'required|unique:product',
+                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]*$/', 'unique:product'],
                 'notes'=>'required',
-                'images'=>'required',
-                'file'=>'required',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'cutting_cost'=>'required',
                 'stitching_cost'=>'required',
                 'option'=>'required',
             ]
             );
-       
-            $filename = time() . "." . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('product_pictures'), $filename);
-
-
-            //for multiple files
-             foreach ($request->file('file') as $image) {
-                 $imageName = $image->getClientOriginalName();
-                 $image->move(public_path('images'), $imageName);
-                 $fileNames[] = $imageName;
-             }
-            
-             $productImage = new ProductImage_Model();
-             $productImage->product_image = json_encode($fileNames);
-
-             
+            $mainImage = $request->file('images')[0];
+            $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
+            $mainImage->move(public_path('images'), $mainImageName);
             $product=new Product_Model;
             $product->name=$request['name'];
             $product->model_no=$request['model_no'];
             $product->notes=$request['notes'];
-            $product->image=$filename;
             $product->cutting_cost=$request['cutting_cost'];
             $product->stitching_cost=$request['stitching_cost'];
+            $product->image=$mainImageName;
+            // dd($request->all());
+            // die;
             $product->save();
-            //product image
-            $productImage->product_id = $product->id;
-            $productImage->save();
+            //product mi
+            foreach ($request->file('images') as $index => $image) {
+                if($index != 0)
+                {   
+                    $imageName = time() . '_1' . $image->getClientOriginalName();
+                    $image->move(public_path('images'), $imageName);
+                    $productImage = new ProductImage_Model();
+                    $productImage->product_image = $imageName;
+                    $productImage->product_id = $product->id;
+                    $productImage->save();
+                }
+            }
+            //product image end
 
             //product_leather
             // $product_leather=new ProductLeather_Model;
@@ -165,10 +163,9 @@ class ProductController extends Controller
         $request->validate(
             [
                 'name'=>'required',
-                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]\*$/'],
+                'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]*$/', 'unique:product'],
                 'notes'=>'required',
-                'image'=>'required',
-                'file'=>'required',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'cutting_cost'=>'required',
                 'stitching_cost'=>'required',
                 'option'=>'required',

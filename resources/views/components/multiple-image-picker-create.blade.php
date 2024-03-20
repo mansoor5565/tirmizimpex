@@ -12,32 +12,30 @@
             justify-content: space-between;
         }
     .img-container {
-        width: 400px;
+        width: auto;
         display: flex;
+        flex-wrap:wrap;
         justify-content: flex-start;
         align-items: flex-start;
         position: relative;
         height: auto;
-        max-height: 300px;
         overflow-y: auto;
     }
 
     .img-container .image {
-        height: 85px;
+        margin: 5px;
         position: relative;
-        width: 85px;
         border-radius: 5px;
     }
 
     .img-container .image img {
-        height: 100%;
-        width: 100%;
+        width: 100px;
     }
 
     .img-container .image span {
         position: absolute;
         top: -4px;
-        right: 5px;
+        right: 2px;
         cursor: pointer;
         font-size: 22px;
         color: #fff;
