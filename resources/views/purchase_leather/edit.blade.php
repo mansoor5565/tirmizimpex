@@ -43,6 +43,21 @@
 <div class="selected-leather-container mt-3">
     <!-- Selected leather colors will be displayed here -->
 </div>
+<div class="col-12">
+    <select name="leather_vendors" class="form-control leather-vendor">
+        <option value="">Select Vendor</option>
+        @foreach($leathervendor as $vendor)
+            <option value="{{ $vendor->id }}" {{$purchase_leather->where('leather_vendor_id',$vendor->id) ? 'selected' : ''}}>
+                {{ $vendor->name }}
+            </option>
+        @endforeach
+    </select>
+    <span class='text-danger'>
+        @error('leather_vendors')
+            {{ $message }}
+        @enderror
+    </span>
+</div>
 
 
 
@@ -97,14 +112,7 @@
                             ${leather.name}: 
                             <input type="number" name="leather_quantities[]" class="form-control leather-quantity" placeholder="Quantity" value="${leather.quantity}">
                             <input type="number" name="leather_costs[]" class="form-control leather-cost" placeholder="Cost" value="${leather.cost}">
-                            <select name="leather_vendors[]" class="form-control leather-vendor">
-    <option value="">Select Vendor</option>
-    @foreach($leathervendor as $vendor)
-        <option value="{{ $vendor->id }}" {{ isset($leather) && $leather->vendor == $vendor->id ? 'selected' : '' }}>
-            {{ $vendor->name }}
-        </option>
-    @endforeach
-</select>
+                            
                             <button type="button" class="btn btn-danger cancel-btn" onclick="cancelLeatherSelection(this)"><i class="bi bi-trash"></i></button>
                         </div>
                     `;

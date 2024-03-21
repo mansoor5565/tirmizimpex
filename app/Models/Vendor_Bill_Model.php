@@ -12,7 +12,8 @@ class Vendor_Bill_Model extends Model
     protected $primarykey="id";
     protected $fillable=['leather_vendor_id','remaining_balance'];
 
-    public function leatherpurchase(){
-        return $this->belongsTo(Purchase_Leather_Model::class,'leather_purchase_id');
+    public function leatherpurchase() {
+        return $this->belongsTo(Purchase_Leather_Model::class, 'leather_purchase_id');
     }
+    
 }

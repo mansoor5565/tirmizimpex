@@ -29,10 +29,18 @@
                                         <td>{{$leathertransactions->amount }}</td>
                                         <td>{{$leathertransactions->description}}</td>
                                         <td>{{$leathertransactions->transaction_type}}</td>
+                                        <td>
+                                            @foreach ($vendorBillSummaries as $vendorbill)
+                                                Leather Vendor ID: {{ $vendorbill->leather_vendor_id }}, Total Remaining Balance: {{ $vendorbill->total_remaining_balance }}<br>
+                                            @endforeach
+                                        </td>                                        
                                         <td>{{$leathertransactions->transaction_date }}</td>
                                         <td>
                                             <a href="/leather_transaction/show/{{$leathertransactions->id}}" class="action-btn btn btn-success mr-2">
                                                 <i class="bi bi-eye"></i> <span>View</span>
+                                            </a>
+                                            <a href="//show/{{$leathertransactions->id}}" class="action-btn btn btn-primary mr-2">
+                                                <i class="bi bi-eye"></i> <span>Pay Now</span>
                                             </a>
                                         </td>
                                     </tr>

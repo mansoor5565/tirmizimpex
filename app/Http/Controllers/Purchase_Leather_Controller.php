@@ -69,9 +69,7 @@ class Purchase_Leather_Controller extends Controller
             else{
                 $purchase_leather->cost_per_unit = 1;
             }
-            if(isset($request->leather_vendors[$key])){
-                $purchase_leather->leather_vendor_id=$request->leather_vendors[$key];
-            }
+            $purchase_leather->leather_vendor_id=$request['leather_vendors'];
             $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
             $purchase_leather->total_cost=$total;
             $leathertransaction->amount=$purchase_leather->total_cost;
@@ -79,7 +77,8 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather->save();
             //Vendor bills
             $vendor_bill->leather_purchase_id=$purchase_leather->id;
-            $vendor_bill->leather_vendor_id=$purchase_leather->leather_vendor_id;
+            $vendor_bill->leather_vendor_id=$request['leather_vendors'];
+            $vendor_bill->transaction_type="payment";
             //purchase leather color
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             //leather transaction
@@ -169,6 +168,7 @@ class Purchase_Leather_Controller extends Controller
             //Vendor bills
             $vendor_bill->leather_purchase_id=$purchase_leather->id;
             $vendor_bill->leather_vendor_id=$purchase_leather->leather_vendor_id;
+            $vendor_bill->transaction_type="payment";
             //purchase leather color
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             //leather transaction

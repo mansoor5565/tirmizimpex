@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('leather_purchase_id');
             $table->foreign('leather_purchase_id')->references('id')->on('purchase_leather')->onDelete('cascade');
             $table->unsignedBigInteger('leather_vendor_id');
-            $table->foreign('leather_vendor_id')->references('id')->on('purchase_leather')->onDelete('cascade');
+            $table->foreign('leather_vendor_id')->references('leather_vendor_id')->on('purchase_leather')->onDelete('cascade');
+            $table->enum('transaction_type',['payment']);
             $table->integer('remaining_balance');
             $table->timestamps();
         });

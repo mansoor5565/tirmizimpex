@@ -20,6 +20,7 @@
                         <form action="/purchase_leather" method="POST" class="row g-3">
                             @csrf
                             <div class="col-12">
+                                
                                 <label for="leatherSelect" class="form-label">Choose Leather</label>
                                 <select class="form-select mb-2" id="leatherSelect" name="leather[]" multiple>
                                     @foreach ($leathers_color as $leather_color)
@@ -36,6 +37,22 @@
                                     <!-- Selected leather colors will be displayed here -->
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <select name="leather_vendors" class="form-control leather-vendor">
+                                    <option value="">Select Vendor</option>
+                                    @foreach($leathervendor as $vendor)
+                                        <option value="{{ $vendor->id }}">
+                                            {{ $vendor->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <span class='text-danger'>
+                                    @error('leather_vendors')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                            
                             
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -87,14 +104,6 @@
                             ${leather.name}: 
                             <input type="number" name="leather_quantities[]" class="form-control leather-quantity" placeholder="Quantity" value="${leather.quantity}">
                             <input type="number" name="leather_costs[]" class="form-control leather-cost" placeholder="Cost" value="${leather.cost}">
-                            <select name="leather_vendors[]" class="form-control leather-vendor">
-    <option value="">Select Vendor</option>
-    @foreach($leathervendor as $vendor)
-        <option value="{{ $vendor->id }}" {{ isset($leather) && $leather->vendor == $vendor->id ? 'selected' : '' }}>
-            {{ $vendor->name }}
-        </option>
-    @endforeach
-</select>
                             <button type="button" class="btn btn-danger cancel-btn" onclick="cancelLeatherSelection(this)"><i class="bi bi-trash"></i></button>
                         </div>
                     `;

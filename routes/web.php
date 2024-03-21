@@ -108,9 +108,7 @@ Route::post('/leather_vendor/update/{id}',[Leather_Vendor_Controller::class,'upd
 //leather_transaction
 Route::resource('/leather_transaction',Leather_Transaction_Controller::class);
 Route::get('/leather_transaction/show/{id}', [Leather_Transaction_Controller::class, 'show']);
-//leather_vendor_bill
-Route::resource('/leather_vendor_bill',Vendor_Bill_Controller::class);
-Route::get('/leather_vendor_bill/show/{id}', [Vendor_Bill_Controller::class, 'show']);
+
 
 //Menu Management
 Route::resource('menu', Menu::class);
