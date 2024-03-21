@@ -42,7 +42,8 @@ class Leather_Transaction_Controller extends Controller
     public function show(string $id)
     {
         $leathertransaction=Leather_Transaction_Model::find($id);
-        $data=compact('leathertransaction');
+        $vendorBillSummaries = Vendor_Bill_Model::groupBy('leather_vendor_id')->selectRaw('leather_vendor_id, sum(remaining_balance) as total_remaining_balance')->get();
+        $data=compact('leathertransaction','vendorBillSummaries');
         return view('leather_transaction.show')->with($data);   
     }
 
