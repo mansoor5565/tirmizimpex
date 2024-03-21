@@ -88,23 +88,20 @@ class ProductController extends Controller
             // $product_leather->save();
             //product accessories
 
-            foreach ($request->accessories as $key => $accessorieId) {
-                // Create a new instance of the ProductAccessories_Model
-                $productaccessories = new ProductAccessories_Model;
-            
-                // Set the accessory id and product id
-                $productaccessories->accessories_id = $accessorieId;
-                $productaccessories->product_id = $product->id;
-                if (isset($request->accessory_quantities[$key])) {
-                    $productaccessories->quantity = $request->accessory_quantities[$key];
-                } else {
-                    // Default quantity if not specified
-                    $productaccessories->quantity = 1; 
+            if ($request->has('accessories')) {
+                foreach ($request->accessories as $key => $accessorieId) {
+                    $productaccessories = new ProductAccessories_Model;
+                    $productaccessories->accessories_id = $accessorieId;
+                    $productaccessories->product_id = $product->id;
+                    if (isset($request->accessory_quantities[$key])) {
+                        $productaccessories->quantity = $request->accessory_quantities[$key];
+                    } else {
+                        $productaccessories->quantity = 1; 
+                    }
+                    $productaccessories->save();
                 }
-            
-                // Save the product accessory to the database
-                $productaccessories->save();
             }
+            
             $productsize = new ProductSize_Model;
             $productsize->product_id = $product->id;
             foreach ($request->option as $selectedOption) {
@@ -171,24 +168,22 @@ class ProductController extends Controller
                 'option'=>'required',
             ]
             );
+            $mainImage = $request->file('images')[0];
+            $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
+            $mainImage->move(public_path('images'), $mainImageName);
+            
         $product = Product_Model::find($id);
         $productImage = ProductImage_Model::where('product_id', $id)->first();
         $productsize = ProductSize_Model::where('product_id', $id)->first();
         $productaccessories = ProductAccessories_Model::where('product_id', $id)->get();
         $product_leather = ProductLeather_Model::where('product_id', $id)->first();
         // Update product details
-        $product->name = $request['name'];
-        $product->model_no = $request['model_no'];
-        $product->notes = $request['notes'];
-        $product->cutting_cost = $request['cutting_cost'];
-        $product->stitching_cost = $request['stitching_cost'];
-
-        if ($request->hasFile('image')) {
-            $filename = time() . "." . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('product_pictures'), $filename);
-            $product->image = $filename;
-        }
-
+        $product->name=$request['name'];
+        $product->model_no=$request['model_no'];
+        $product->notes=$request['notes'];
+        $product->cutting_cost=$request['cutting_cost'];
+        $product->stitching_cost=$request['stitching_cost'];
+        $product->image=$mainImageName;
         $product->save();
         
 
@@ -199,42 +194,53 @@ class ProductController extends Controller
         
 
         // Update product images
-        if ($request->hasFile('file')) {
-            $fileNames = [];
-            foreach ($request->file('file') as $image) {
-                $imageName = $image->getClientOriginalName();
+        foreach ($request->file('images') as $index => $image) {
+            if($index != 0)
+            {   
+                $imageName = time() . '_1' . $image->getClientOriginalName();
                 $image->move(public_path('images'), $imageName);
-                $fileNames[] = $imageName;
+                $productImage->product_image = $imageName;
+                $productImage->product_id = $product->id;
+                $productImage->save();
             }
-            $productImage->product_image = json_encode($fileNames);
-            $productImage->save();
+        }
+        $productaccessories = ProductAccessories_Model::where('product_id', $id)->get();
+
+if ($request->has('accessories')) {
+    foreach ($request->accessories as $key => $accessorieId) {
+        $productaccessory = $productaccessories->where('accessories_id', $accessorieId)->first();
+        
+        if (!$productaccessory) {
+            $productaccessory = new ProductAccessories_Model;
+            $productaccessory->product_id = $product->id;
+            $productaccessory->accessories_id = $accessorieId;
         }
 
-        // Update product accessories
-        foreach ($productaccessories as $key => $productAccessory) {
-            $accessorie = $request->accessories[$key];
-            $productAccessory->accessories_id = $accessorie;
-            if (isset($request['accessory_quantities'][$key])) {
-                $productAccessory->quantity = $request['accessory_quantities'][$key];
-            } else {
-                $productAccessory->quantity = 1; 
-            }
-            $productAccessory->save();
-        }
+        $productaccessory->quantity = isset($request->accessory_quantities[$key]) ? $request->accessory_quantities[$key] : 1;
+        $productaccessory->save();
+    }
+}
+
+        // Update product SIZE
+        $productsize = ProductSize_Model::where('product_id', $id)->first();
 
         foreach ($request->option as $selectedOption) {
             $existingSize = $productsize->where('size', $selectedOption)->first();
+            
             if ($existingSize) {
+                // Update existing size
                 $existingSize->update([
-                    'product_id' => $product->id, 
+                    'product_id' => $product->id,
                 ]);
             } else {
-                $newSize = new ProductSize_Model;
+                // Create new size
+                
                 $newSize->product_id = $product->id;
                 $newSize->size = $selectedOption;
                 $newSize->save();
             }
         }
+
         $updateSuccess = true;
         return redirect('/product')->with('updateSuccess', $updateSuccess);
     }
@@ -249,7 +255,7 @@ class ProductController extends Controller
             $imageFilename = $product->image;
 
         if (!is_null($imageFilename)) {
-            $imagePath = public_path('product_pictures') . '/' . $imageFilename;
+            $imagePath = public_path('images') . '/' . $imageFilename;
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }

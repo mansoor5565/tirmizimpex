@@ -64,47 +64,185 @@
                             </span>
                         </div>
                         <div class="col-12">
-                            <label for="selectSizes" class="form-label">Select Size Options:</label><br>
-<div class="row">
-    <div class="col-auto">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="option1" name="option[]" value="S" {{ $productsize->contains('size', 'S') ? 'checked' : '' }}>
-            <label class="form-check-label" for="option1">S</label>
-        </div>
-    </div>
-    <div class="col-auto">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="option2" name="option[]" value="M" {{ $productsize->contains('size', 'M') ? 'checked' : '' }}>
-            <label class="form-check-label" for="option2">M</label>
-        </div>
-    </div>
-    <div class="col-auto">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="option3" name="option[]" value="L" {{ $productsize->contains('size', 'L') ? 'checked' : '' }}>
-            <label class="form-check-label" for="option3">L</label>
-        </div>
-    </div>
-    <div class="col-auto">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="option4" name="option[]" value="XL" {{ $productsize->contains('size', 'XL') ? 'checked' : '' }}>
-            <label class="form-check-label" for="option4">XL</label>
-        </div>
-    </div>
-    <div class="col-auto">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="option4" name="option[]" value="XXL" {{ $productsize->contains('size', 'XXL') ? 'checked' : '' }}>
-            <label class="form-check-label" for="option4">XXL</label>
-        </div>
-    </div>
-    <div class="col-auto">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="option4" name="option[]" value="XXXL" {{ $productsize->contains('size', 'XXXL') ? 'checked' : '' }}>
-            <label class="form-check-label" for="option4">XXXL</label>
-        </div>
-    </div>
-</div>
+                            <label for="selectSizes" class="form-label">Select Leather Size Options:</label><br>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAllLeatherSize">
+                                        <label class="form-check-label" for="selectAllLeatheSize">Select All leather
+                                            Size</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option1" name="option[]"
+                                            value="XS" {{ $productsize->contains('size', 'XS') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option1">XS</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option2" name="option[]"
+                                            value="S" {{ $productsize->contains('size', 'S') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option2">S</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option3" name="option[]"
+                                            value="M" {{ $productsize->contains('size', 'M') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option3">M</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option4" name="option[]"
+                                            value="L" {{ $productsize->contains('size', 'L') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option4">L</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option5" name="option[]"
+                                            value="XL" {{ $productsize->contains('size', 'XL') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option5">XL</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option5" name="option[]"
+                                            value="2XL" {{ $productsize->contains('size', '2XL') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option6">2XL</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option6"
+                                            name="option[]" value="3XL" {{ $productsize->contains('size', '3XL') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option6">3XL</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="selectAllJeanSize" class="form-label">Select Jeans Size Options:</label><br>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="selectAllJeanSize">
+                                    <label class="form-check-label" for="selectAllSizes">Select All Jean Size</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option7"
+                                            name="option[]" value="28" {{ $productsize->contains('size', '28') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option7">28</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option8"
+                                            name="option[]" value="30" {{ $productsize->contains('size', '30') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option8">30</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option9"
+                                            name="option[]" value="32" {{ $productsize->contains('size', '32') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option9">32</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option10"
+                                            name="option[]" value="34" {{ $productsize->contains('size', '34') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option10">34</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option11"
+                                            name="option[]" value="36" {{ $productsize->contains('size', '36') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option11">36</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option12"
+                                            name="option[]" value="38" {{ $productsize->contains('size', '38') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option12">38</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option13"
+                                            name="option[]" value="40" {{ $productsize->contains('size', '40') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option13">40</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option14"
+                                            name="option[]" value="42" {{ $productsize->contains('size', '42') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option14">42</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option15"
+                                            name="option[]" value="44" {{ $productsize->contains('size', '44') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option15">44</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="selectSizes" class="form-label">Custom Option:</label><br>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="option5"
+                                            name="option[]" value="Custom" {{ $productsize->contains('size', 'Custom') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="option16">Custom</label>
+                                    </div>
+                                </div>
 
-                        </div>                        
+                            </div>
+                        </div>
+                    </div>
+                    @push('script')
+                        <script>
+                            $(document).ready(function() {
+                                var leathercheckbox = $('input[name="option[]"]').slice(0, 7);
+                                var jeanscheckbox = $('input[name="option[]"]').slice(7, 7 + 9);
+                                $('#selectAllJeanSize').change(function() {
+                                    if ($(this).is(':checked')) {
+                                        $('input[name="option[]"]:last').prop('checked', false);
+                                        jeanscheckbox.prop('checked', true);
+                                    } else {
+                                        jeanscheckbox.prop('checked', false);
+                                    }
+                                });
+                                $('#selectAllLeatherSize').change(function() {
+                                    if ($(this).is(':checked')) {
+                                        $('input[name="option[]"]:last').prop('checked', false);
+                                        leathercheckbox.prop('checked', true);
+                                    } else {
+                                        leathercheckbox.prop('checked', false);
+                                    }
+                                });
+                                $('input[name="option[]"]:last').change(function() {
+                                    $('#selectAllJeanSize').prop('checked', false);
+                                    $('#selectAllLeatherSizee').prop('checked', false);
+                                    jeanscheckbox.prop('checked', false);
+                                    leathercheckbox.prop('checked', false);
+                                })
+                            });
+                        </script>
+                    @endpush
+                                               
                         <div class="col-12">
                             <label for="inputNotes4" class="form-label">Notes</label>
                             <input type="text" name="notes" class="form-control" id="inputNotes4" value="{{$product->notes}}">
@@ -163,39 +301,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Image Form</h5>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <label for="inputImage2" class="form-label">Image</label>
-                            <input type="file" name="image" class="form-control" id="inputImage2" onchange="previewImage(this)">
-    <span class='text-danger'>
-        @error('image')
-        {{$message}}
-        @enderror
-    </span>
-    <div class="container" id="imagePreview">
-        
-    </div>
-
-    <div class="col-12">
-        <label for="inputMultipleImages2" class="form-label">Multiple Images</label>
-        <input type="file" name="file[]" multiple="multiple" class="form-control" id="inputMultipleImages2" onchange="previewMultipleImages(this)">
-        <span class='text-danger'>
-            @error('notes')
-            {{$message}}
-            @enderror
-        </span>
-        <div class="container" id="multipleImagesPreview">
-            
-        </div>
-    </div>
-
+         <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Image Form</h5>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                @error('images')
+                                @enderror
+                                @include('components.multiple-image-picker-create')
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Accessories Form</h5>

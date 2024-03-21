@@ -41,7 +41,7 @@
                                         <td>{{ $products->name }}</td>
                                         <td>{{ $products->model_no }}</td>
                                         <td>{{ $products->notes }}</td>
-                                        <td><img src="{{ asset('product_pictures/')}}/{{$products->image}}" width="70px" height="70px" alt="image"></td>
+                                        <td><img src="{{ asset('images/')}}/{{$products->image}}" width="70px" height="70px" alt="image"></td>
                                         <td>{{ $products->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="/product/show/{{$products->id}}" class="action-btn btn btn-success mr-2">
