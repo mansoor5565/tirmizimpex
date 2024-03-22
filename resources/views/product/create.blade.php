@@ -46,15 +46,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Product Info</h5>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="inputName4" class="form-label">Product Name</label>

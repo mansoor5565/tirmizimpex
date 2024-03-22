@@ -115,8 +115,6 @@ Route::get('/leather_transaction/show/{id}', [Leather_Transaction_Controller::cl
 Route::resource('menu', Menu::class);
 Route::get('/menu/delete/{id}', [Menu::class, 'destroy']);
 
-
-
 //user registeration
 Route::resource('users',User::class);
 Route::get('/users/delete/{id}', [User::class, 'destroy']);
