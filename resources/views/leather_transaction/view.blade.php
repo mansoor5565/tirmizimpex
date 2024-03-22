@@ -18,6 +18,7 @@
                                     <th>Amount</th>
                                     <th>Description</th>
                                     <th>Transaction Type</th>
+                                    <th>Remaining Balance</th>
                                     <th data-type="date" data-format="YYYY/DD/MM">Transaction Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -40,7 +41,7 @@
                                                 <i class="bi bi-eye"></i> <span>View</span>
                                             </a>
                                             <a href="//show/{{$leathertransactions->id}}" class="action-btn btn btn-primary mr-2">
-                                                <i class="bi bi-eye"></i> <span>Pay Now</span>
+                                                 <span>Pay Now</span>
                                             </a>
                                         </td>
                                     </tr>
@@ -55,38 +56,5 @@
             </div>
         </div>
     </section>
-    @push('script')
-        @if(session()->has('submitSuccess'))
-            <script>
-                swal("Saved Successfully!", "", "success");
-            </script>
-        @endif
-        @if(session()->has('updateSuccess'))
-            <script>
-                swal("Updated Successfully!", "", "success");
-            </script>
-        @endif
-        @if(session()->has('DeleteSuccess'))
-            <script>
-                swal("Deleted!", "Accessory has been deleted successfully.", "success");
-            </script>
-        @endif
-        
-        <script>
-            function deleteAccessory(id) {
-                swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this accessory!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location.href = '/accessories/delete/' + id;
-                    }
-                });
-            }
-        </script>
-    @endpush
+  
 @endsection

@@ -80,7 +80,8 @@ class VenueController extends Controller
         $venue = Venue::find($id);
         $venue->name=$request['name'];
         $venue->save();
-        return redirect('/venue');
+        $updateSuccess = true;
+        return redirect('/venue')->with('updateSuccess', $updateSuccess);
     }
     /**
      * Remove the specified resource from storage.
@@ -90,8 +91,10 @@ class VenueController extends Controller
         $venue = Venue::find($id);
         if(!is_null($venue))
         {
+            $DeleteSuccess = true;
             $venue->delete();
         }
-        return redirect('/venue');
+        
+        return redirect('/venue')->with('DeleteSuccess', $DeleteSuccess);
     }
 }

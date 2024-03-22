@@ -76,7 +76,7 @@
         @endif
         @if(session()->has('DeleteSuccess'))
             <script>
-                swal("Deleted!", "Accessory has been deleted successfully.", "success");
+                swal("Deleted!", "Accessory Inventory has been deleted successfully.", "success");
             </script>
         @endif
         
@@ -84,14 +84,14 @@
             function deleteAccessory(id) {
                 swal({
                     title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this accessory!",
+                    text: "Once deleted, you will not be able to recover this accessory inventory!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location.href = '/accessories/delete/' + id;
+                        window.location.href = '/accessories_inventory/delete/' + id;
                     }
                 });
             }

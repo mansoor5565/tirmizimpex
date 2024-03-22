@@ -46,12 +46,13 @@
                                     <option value="Pcs">Pcs</option>
                                     <option value="Packet">Packet</option>
                                     <option value="sqft">Sqft</option>
+                                    <span class='text-danger'>
+                                        @error('unit')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </select>
-                                <span class='text-danger'>
-                                    @error('unit')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+                               
                             </div>
                             <div class="col-12">
                                 <label for="typeSelect" class="form-label">Type</label>
@@ -62,12 +63,14 @@
                                     @endforeach
                                 </select>
                                 <input type="text" name="other_type" class="form-control mt-2" placeholder="Enter Other Type(Optional)">
+                                <span class='text-danger'>
+                                    @error('type')
+                                        {{ $message }}
+                                    @enderror
+                                </span> 
+                                
                             </div>   
-                            <span class='text-danger'>
-                                @error('type')
-                                    {{ $message }}
-                                @enderror
-                            </span>                                               
+                                                                          
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>

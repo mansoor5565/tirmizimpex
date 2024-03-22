@@ -12,7 +12,7 @@
     </nav>
 </div><!-- End Page Title -->
 <section class="section">
-    <form action="/venue" method="POST" enctype="multipart/form-data" class="row g-3">
+    <form action="{{$url}}" method="POST" enctype="multipart/form-data" class="row g-3">
         @csrf
         <div class="col-lg-8">
             <div class="card">
@@ -21,7 +21,7 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="inputName4" class="form-label">Venue Name</label>
-                            <input type="text" class="form-control" id="inputName4" name="name" value="{{$venue->name}}>
+                            <input type="text" class="form-control" id="inputName4" name="name" value="{{$venue->name}}">
                             <span class='text-danger'>
                                 @error('name')
                                 {{$message}}

@@ -65,6 +65,7 @@ Route::get('/venue/create', [VenueController::class, 'create']);
 Route::get('/venue/delete/{id}', [VenueController::class, 'destroy']);
 Route::get('/venue/edit/{id}', [VenueController::class, 'edit']);
 Route::get('/venue/show/{id}',[VenueController::class,'show']);
+Route::post('/venue/update/{id}',[VenueController::class,'update']);
 
 //purchase_leather
 Route::resource('/purchase_leather',Purchase_Leather_Controller::class);

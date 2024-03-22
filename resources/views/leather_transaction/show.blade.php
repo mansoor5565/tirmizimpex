@@ -55,7 +55,7 @@
                             <div class="details-row">
                                 <span class="details-label">Remaining Balance:</span>
                                 @foreach ($vendorBillSummaries as $vendorbill)
-                                    <span class="details-value">{{ $vendorbill->leather_vendor_id }} {{ $vendorbill->total_remaining_balance }}</span>
+                                    <span class="details-value"> Leather Vendor ID:{{  $vendorbill->leather_vendor_id }} Total Remaining Balance:{{ $vendorbill->total_remaining_balance }}</span>
                                 @endforeach
                             </div>
                             

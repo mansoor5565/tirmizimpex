@@ -51,7 +51,7 @@
                             <div class="details-row">
                                 <span class="details-label">Image:</span>
                                 <span class="details-value">
-                                    <img src="{{ asset('product_pictures/' . $product->image) }}" width="90px" height="90px" alt="image">
+                                    <img src="{{ asset('images/' . $product->image) }}" width="90px" height="90px" alt="image">
                                 </span>
                                 
                             </div>

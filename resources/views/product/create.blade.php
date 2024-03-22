@@ -222,6 +222,11 @@
                                     </div>
 
                                 </div>
+                                <span class='text-danger'>
+                                    @error('option')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         @push('script')
@@ -324,6 +329,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="card">
                     <div class="card-body">

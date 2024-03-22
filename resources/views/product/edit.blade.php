@@ -208,7 +208,11 @@
                                         <label class="form-check-label" for="option16">Custom</label>
                                     </div>
                                 </div>
-
+                                <span class='text-danger'>
+                                    @error('option')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                     </div>
