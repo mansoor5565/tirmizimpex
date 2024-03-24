@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Leather_Transaction_Model;
-use App\Models\Vendor_Bill_Model;
 
 class Leather_Transaction_Controller extends Controller
 {
@@ -13,10 +12,9 @@ class Leather_Transaction_Controller extends Controller
      */
     public function index()
     {
-        
-        $vendorBillSummaries = Vendor_Bill_Model::groupBy('leather_vendor_id')->selectRaw('leather_vendor_id, sum(remaining_balance) as total_remaining_balance')->get();
-        $leathertransaction=Leather_Transaction_Model::with('purchaseleather')->get();
-        $data=compact('leathertransaction','vendorBillSummaries');
+        $leathertransaction=Leather_Transaction_Model::with('purchaseLeatherInfo.purchaseleathercolor.leatherColors.leathers')->get();
+        dd($leathertransaction);
+        $data=compact('leathertransaction');
         return view('leather_transaction.view')->with($data);
     }
 
@@ -42,8 +40,7 @@ class Leather_Transaction_Controller extends Controller
     public function show(string $id)
     {
         $leathertransaction=Leather_Transaction_Model::find($id);
-        $vendorBillSummaries = Vendor_Bill_Model::groupBy('leather_vendor_id')->selectRaw('leather_vendor_id, sum(remaining_balance) as total_remaining_balance')->get();
-        $data=compact('leathertransaction','vendorBillSummaries');
+        $data=compact('leathertransaction');
         return view('leather_transaction.show')->with($data);   
     }
 

@@ -9,7 +9,6 @@ use App\Models\Purchase_Leather_Model;
 use App\Models\Leather_Vendor_Model;
 use App\Models\Purchase_Leather_Color_Model;
 use App\Models\Leather_Transaction_Model;
-use App\Models\Vendor_Bill_Model;
 use App\Models\Leather_Inventory_Model;
 
 class Purchase_Leather_Controller extends Controller
@@ -54,7 +53,6 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather=new Purchase_Leather_Model;
             $purchase_leather_color=new Purchase_Leather_Color_Model;
             $leathertransaction=new Leather_Transaction_Model;
-            $vendor_bill=new Vendor_Bill_Model;
 
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             $purchase_leather_color->leather_color_id=$leathercolorid;
@@ -74,7 +72,6 @@ class Purchase_Leather_Controller extends Controller
             $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
             $purchase_leather->total_cost=$total;
             $leathertransaction->amount=$purchase_leather->total_cost;
-            $vendor_bill->remaining_balance=$vendor_bill->remaining_balance-$leathertransaction->amount;
             //leather inventory 
             $leather_inventory = Leather_Inventory_Model::where('leathercolor_id', $leathercolorid)->first();
 
@@ -86,10 +83,6 @@ class Purchase_Leather_Controller extends Controller
             }
 
             $purchase_leather->save();
-            //Vendor bills
-            $vendor_bill->leather_purchase_id=$purchase_leather->id;
-            $vendor_bill->leather_vendor_id=$request['leather_vendors'];
-            $vendor_bill->transaction_type="payment";
             //purchase leather color
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             //leather transaction
@@ -99,7 +92,6 @@ class Purchase_Leather_Controller extends Controller
             $leathertransaction->description="Leather has been Purchased";
             $purchase_leather_color->save();
             $leathertransaction->save();
-            $vendor_bill->save();
         }
         $submitSuccess = true;
 
@@ -153,7 +145,6 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather=Purchase_Leather_Model::find($id);
             $purchase_leather_color = Purchase_Leather_Color_Model::where('purchase_leather_id', $id)->first();
             $leathertransaction=Leather_Transaction_Model::where('purchase_leather_id', $id)->first();
-            $vendor_bill=Vendor_Bill_Model::where('leather_purchase_id', $id)->first();
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             $purchase_leather_color->leather_color_id=$leathercolorid;
            if(isset($request->leather_quantities[$key])){
@@ -174,12 +165,7 @@ class Purchase_Leather_Controller extends Controller
             $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
             $purchase_leather->total_cost=$total;
             $leathertransaction->amount=$purchase_leather->total_cost;
-            $vendor_bill->remaining_balance=$vendor_bill->remaining_balance-$leathertransaction->amount;
             $purchase_leather->save();
-            //Vendor bills
-            $vendor_bill->leather_purchase_id=$purchase_leather->id;
-            $vendor_bill->leather_vendor_id=$purchase_leather->leather_vendor_id;
-            $vendor_bill->transaction_type="payment";
             //purchase leather color
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             //leather transaction
@@ -189,7 +175,6 @@ class Purchase_Leather_Controller extends Controller
             $leathertransaction->description="Leather has been Purchased";
             $purchase_leather_color->save();
             $leathertransaction->save();
-            $vendor_bill->save();
         }
         $updateSuccess = true;
         return redirect('/purchase_leather')->with('updateSuccess', $updateSuccess);
