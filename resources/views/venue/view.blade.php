@@ -26,6 +26,7 @@
                                     <th>
                                         <b>N</b>ame
                                     </th>
+                                    <th>Buyer Name</th>
                                     <th data-type="date" data-format="YYYY/DD/MM">Created Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -34,6 +35,7 @@
                                 @foreach ($venue as $venues)
                                     <tr>
                                         <td>{{ $venues->name }}</td>
+                                        <td>{{ $venues->buyer_name }}</td>                                 
                                         <td>{{ $venues->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="/venue/show/{{$venues->id}}" class="action-btn btn btn-success mr-2">

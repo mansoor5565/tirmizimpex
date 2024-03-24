@@ -40,8 +40,13 @@
                                 <span class="details-label">Name:</span>
                                 <span class="details-value">{{$venue->name }}</span>
                             </div>
+                            <div class="details-row">
+                              <span class="details-label">Buyer Name:</span>
+                              <span class="details-value">{{$venue->buyer_name }}</span>
+                          </div>
                             </div>
                           </div>
+                          
                     </div>
                 </div>
             </div>

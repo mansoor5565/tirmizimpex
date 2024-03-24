@@ -36,6 +36,7 @@ class VenueController extends Controller
             );
             $venue=new Venue;
             $venue->name=$request['name'];
+            $venue->buyer_name=$request['buyer_name'];
             $venue->save();
             $submitSuccess = true;
             return redirect('/venue')->with('submitSuccess', $submitSuccess);
@@ -72,16 +73,19 @@ class VenueController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(
-            [
-                'name'=>'required',
-            ]
-            );
+        $request->validate([
+            'name' => 'required',
+            'buyer_name' => 'required'
+        ]);
+    
         $venue = Venue::find($id);
-        $venue->name=$request['name'];
+        $venue->name = $request->input('name');
+        $venue->buyer_name = $request->input('buyer_name');
         $venue->save();
+    
         $updateSuccess = true;
         return redirect('/venue')->with('updateSuccess', $updateSuccess);
+    
     }
     /**
      * Remove the specified resource from storage.

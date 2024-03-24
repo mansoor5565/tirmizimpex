@@ -10,5 +10,5 @@ class Venue extends Model
     use HasFactory;
     protected $table="venue";
     protected $primarykey='id';
-    protected $fillable=['name'];
+    protected $fillable=['name','buyer_name'];
 }

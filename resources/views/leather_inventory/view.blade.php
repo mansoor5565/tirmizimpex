@@ -36,7 +36,7 @@
                             <tbody>
                                 @foreach ($leather_inventory as $leathers_inventory )
                                     <tr>
-                                        <td>{{$leathers_inventory->leathercolors->first()->leathers->type ." ". $leathers_inventory->leathercolors->color ." ".$leathers_inventory->leathercolor_id }}</td>
+                                        <td>{{$leathers_inventory->leathercolors->leathers->type ." ". $leathers_inventory->leathercolors->color ." ".$leathers_inventory->leathercolor_id }}</td>
                                         <td>{{ $leathers_inventory->lot_no}}</td>
                                         <td>{{ $leathers_inventory->quantity_on_hand }}</td>
                                         <td>{{  $leathers_inventory->created_at->diffForHumans() }}</td>

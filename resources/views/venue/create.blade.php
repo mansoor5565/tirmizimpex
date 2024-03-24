@@ -28,6 +28,15 @@
                                 @enderror
                             </span>
                         </div>
+                        <div class="col-12">
+                            <label for="inputName4" class="form-label">Buyer Name</label>
+                            <input type="text" class="form-control" id="inputName4" name="buyer_name">
+                            <span class='text-danger'>
+                                @error('buyer_name')
+                                {{$message}}
+                                @enderror
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
