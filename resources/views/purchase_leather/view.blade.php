@@ -39,7 +39,7 @@
                                 @foreach ($purchase_leather_color as $purchase_leather_colors)
                                     <tr>
 
-                                        <td>{{$purchase_leather_colors->leatherColors->color ." ".$purchase_leather_colors->leather_color_id }}</td>
+                                        <td>{{$purchase_leather_colors->leatherColors->leathers->type." ".$purchase_leather_colors->leatherColors->color ." ".$purchase_leather_colors->leather_color_id }}</td>
                                         <td>{{$purchase_leather_colors->quantity }}</td>
                                         <td>{{ $purchase_leather_colors->cost_per_unit }}</td>
                                         <td>{{ $purchase_leather_colors->purchaseleathers->total_cost }}</td>

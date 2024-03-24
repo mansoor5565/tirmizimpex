@@ -49,7 +49,7 @@
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="inputName4" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="inputName4" name="name">
+                                <input type="text" class="form-control" id="inputName4" name="name" value="{{ old('name') }}">
                                 <span class='text-danger'>
                                     @error('name')
                                         {{ $message }}
@@ -59,7 +59,7 @@
                             <div class="col-12">
                                 <label for="inputModel4" class="form-label">Model No</label>
                                 <input type="text" class="form-control" id="inputModel4" name="model_no"
-                                    placeholder="AAB-123*">
+                                    placeholder="AAB-123*" value="{{ old('model_no') }}">
                                 <span class='text-danger'>
                                     @error('model_no')
                                         {{ $message }}
@@ -79,49 +79,49 @@
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option1" name="option[]"
-                                                value="XS">
+                                                value="XS"  {{ in_array('XS', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option1">XS</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option2" name="option[]"
-                                                value="S">
+                                                value="S"  {{ in_array('S', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option2">S</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option3" name="option[]"
-                                                value="M">
+                                                value="M"  {{ in_array('M', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option3">M</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option4" name="option[]"
-                                                value="L">
+                                                value="L"   {{ in_array('L', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option4">L</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option5" name="option[]"
-                                                value="XL">
+                                                value="XL"  {{ in_array('XL', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option5">XL</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option5" name="option[]"
-                                                value="2XL">
+                                                value="2XL"  {{ in_array('2XL', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option6">2XL</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option6"
-                                                name="option[]" value="3XL">
+                                                name="option[]" value="3XL"  {{ in_array('3XL', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option6">3XL</label>
                                         </div>
                                     </div>
@@ -139,63 +139,63 @@
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option7"
-                                                name="option[]" value="28">
+                                                name="option[]" value="28"  {{ in_array('28', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option7">28</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option8"
-                                                name="option[]" value="30">
+                                                name="option[]" value="30"  {{ in_array('30', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option8">30</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option9"
-                                                name="option[]" value="32">
+                                                name="option[]" value="32"  {{ in_array('32', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option9">32</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option10"
-                                                name="option[]" value="34">
+                                                name="option[]" value="34"  {{ in_array('34', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option10">34</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option11"
-                                                name="option[]" value="36">
+                                                name="option[]" value="36"  {{ in_array('36', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option11">36</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option12"
-                                                name="option[]" value="38">
+                                                name="option[]" value="38"  {{ in_array('38', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option12">38</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option13"
-                                                name="option[]" value="40">
+                                                name="option[]" value="40"  {{ in_array('40', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option13">40</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option14"
-                                                name="option[]" value="42">
+                                                name="option[]" value="42"  {{ in_array('42', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option14">42</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option15"
-                                                name="option[]" value="44">
+                                                name="option[]" value="44"  {{ in_array('44', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option15">44</label>
                                         </div>
                                     </div>
@@ -207,7 +207,7 @@
                                     <div class="col-auto">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="option5"
-                                                name="option[]" value="Custom">
+                                                name="option[]" value="Custom"  {{ in_array('Custom', old('option', [])) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="option16">Custom</label>
                                         </div>
                                     </div>
@@ -253,7 +253,7 @@
 
                         <div class="col-12">
                             <label for="inputNotes4" class="form-label">Notes</label>
-                            <input type="text" name="notes" class="form-control" id="inputNotes4">
+                            <input type="text" name="notes" class="form-control" id="inputNotes4" value="{{ old('notes') }}">
                             <span class='text-danger'>
                                 @error('notes')
                                     {{ $message }}
@@ -272,7 +272,7 @@
 
                         <div class="col-12">
                             <label for="inputCuttingCost4" class="form-label">Cutting Cost</label>
-                            <input type="number" name="cutting_cost" class="form-control" id="inputCuttingCost4">
+                            <input type="number" name="cutting_cost" class="form-control" id="inputCuttingCost4" value="{{ old('cutting_cost') }}">
                             <span class='text-danger'>
                                 @error('cutting_cost')
                                     {{ $message }}
@@ -281,7 +281,7 @@
                         </div>
                         <div class="col-12">
                             <label for="inputStitchingCost4" class="form-label">Stitching Cost</label>
-                            <input type="number" name="stitching_cost" class="form-control" id="inputStitchingCost4">
+                            <input type="number" name="stitching_cost" class="form-control" id="inputStitchingCost4" value="{{ old('stitching_cost') }}">
                             <span class='text-danger'>
                                 @error('stitching_cost')
                                     {{ $message }}

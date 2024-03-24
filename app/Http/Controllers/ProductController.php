@@ -158,7 +158,6 @@ class ProductController extends Controller
             [
                 'name' => 'required',
                 'model_no' => ['required', 'regex:/^[A-Z]{3}-\d{3}[A-Z]*$/', 'unique:product,model_no,' . $id,],
-                'notes' => 'required',
                 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'cutting_cost' => 'required',
                 'stitching_cost' => 'required',

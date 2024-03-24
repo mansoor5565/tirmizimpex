@@ -19,4 +19,5 @@ class Purchase_Leather_Color_Model extends Model
     public function leatherColors(){
         return $this->belongsTo(LeatherColor::class,'leather_color_id');
     }
+    
 }

@@ -21,7 +21,7 @@
                             @csrf
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="" name="name">
+                                <input type="text" class="form-control" id="" name="name" value="{{ old('name') }}">
                                 <span class='text-danger'>
                                     @error('name')
                                         {{ $message }}
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-12">
                                 <label for="inputPassword4" class="form-label">Cost/Unit</label>
-                                <input type="number" name="cost_per_unit" class="form-control" id="">
+                                <input type="number" name="cost_per_unit" class="form-control" id="" value="{{ old('cost_per_unit') }}" >
                                 <span class='text-danger'>
                                     @error('cost_per_unit')
                                         {{ $message }}
@@ -56,13 +56,14 @@
                             </div>
                             <div class="col-12">
                                 <label for="typeSelect" class="form-label">Type</label>
-                                <select name="type" class="form-select" id="typeSelect">
-                                    <option value="">Select Type</option>
-                                    @foreach($accessories as $accessorie)
-                                        <option value="{{ $accessorie->type }}">{{ $accessorie->type }}</option>
-                                    @endforeach
-                                </select>
-                                <input type="text" name="other_type" class="form-control mt-2" placeholder="Enter Other Type(Optional)">
+                            <select name="type" class="form-select" id="typeSelect">
+                                <option value="">Select Type</option>
+                                @foreach($accessories->unique('type') as $accessorie)
+                                    <option value="{{ $accessorie->type }}">{{ $accessorie->type }}</option>
+                                @endforeach
+                            </select>
+                            <input type="text" name="other_type" class="form-control mt-2" placeholder="Enter Other Type(Optional)">
+
                                 <span class='text-danger'>
                                     @error('type')
                                         {{ $message }}

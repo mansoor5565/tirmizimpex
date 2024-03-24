@@ -10,6 +10,7 @@ use App\Models\Leather_Vendor_Model;
 use App\Models\Purchase_Leather_Color_Model;
 use App\Models\Leather_Transaction_Model;
 use App\Models\Vendor_Bill_Model;
+use App\Models\Leather_Inventory_Model;
 
 class Purchase_Leather_Controller extends Controller
 {
@@ -74,6 +75,16 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather->total_cost=$total;
             $leathertransaction->amount=$purchase_leather->total_cost;
             $vendor_bill->remaining_balance=$vendor_bill->remaining_balance-$leathertransaction->amount;
+            //leather inventory 
+            $leather_inventory = Leather_Inventory_Model::where('leathercolor_id', $leathercolorid)->first();
+
+            if ($leather_inventory) {
+                $leather_inventory->quantity_on_hand += $purchase_leather_color->quantity;
+                $leather_inventory->save();
+            } else {
+                
+            }
+
             $purchase_leather->save();
             //Vendor bills
             $vendor_bill->leather_purchase_id=$purchase_leather->id;

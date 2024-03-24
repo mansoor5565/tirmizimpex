@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('model_no');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->string('image');
             $table->integer('cutting_cost');
             $table->integer('stitching_cost');

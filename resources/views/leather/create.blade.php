@@ -21,7 +21,7 @@
                             @csrf
                             <div class="col-12">
                                 <label for="inputEmail4" class="form-label">Type</label>
-                                <input type="text" name="type" class="form-control" id="">
+                                <input type="text" name="type" class="form-control" id="" value="{{ old('type') }}">
                                 <span class='text-danger'>
                                     @error('type')
                                         {{ $message }}

@@ -21,7 +21,7 @@
                             @csrf
                             <div class="col-12">
                                 <label for="cost_per_unit" class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control" id="">
+                                <input type="text" name="name" class="form-control" id="" value="{{ old('name') }}">
                                 <span class='text-danger'>
                                     @error('name')
                                         {{ $message }}
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-12">
                                 <label for="cost_per_unit" class="form-label">Address</label>
-                                <input type="text" name="address" class="form-control" id="">
+                                <input type="text" name="address" class="form-control" id="" value="{{ old('address') }}">
                                 <span class='text-danger'>
                                     @error('address')
                                         {{ $message }}
