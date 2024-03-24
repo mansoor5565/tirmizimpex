@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User as UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class User extends Controller
 {
@@ -24,7 +25,9 @@ class User extends Controller
     public function create()
     {
         //
-        return view('users.create');
+        $groupPermission=$this->groupPermission();
+        // dd($groupPermission);
+        return view('users.create',['groupPermission' => $groupPermission]);
     }
 
     /**
@@ -54,7 +57,7 @@ class User extends Controller
             'password' => Hash::make($request->password),
             'profile_image' => $imageName, // Store image path in the user model
         ]);
-
+        $user->syncPermissions($request->permissions);
         $submitSuccess = true;
         return redirect('/users')->with('submitSuccess', $submitSuccess);
     }
@@ -73,8 +76,10 @@ class User extends Controller
     public function edit(string $id)
     {
         //
+        $groupPermission=$this->groupPermission();
         $user = UserModel::findOrFail($id);
-        return view('users.edit', compact('user'));
+        $userPermissions = $user->permissions()->pluck('name')->toArray();
+        return view('users.edit', ['groupPermission' => $groupPermission, 'user'=>$user,'userPermissions'=>$userPermissions]);
     }
 
     /**
@@ -95,7 +100,6 @@ class User extends Controller
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
-
         if ($request->hasFile('profile_image')) {
             $image = $request->file('profile_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -104,7 +108,7 @@ class User extends Controller
         }
 
         $user->save();
-
+        $user->syncPermissions($request->permissions);
         return redirect()->route('users.index')->with('updateSuccess', 'User updated successfully!');
     }
 
@@ -116,5 +120,22 @@ class User extends Controller
         $user = UserModel::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index')->with('DeleteSuccess', 'User deleted successfully!');
+    }
+
+    public function groupPermission()
+    {
+        $permissions = Permission::all();
+        $groupedPermissions = [];
+
+        foreach ($permissions as $permission) {
+            $prefix = explode('.', $permission->name)[0];
+
+            if (!isset($groupedPermissions[$prefix])) {
+                $groupedPermissions[$prefix] = [];
+            }
+
+            $groupedPermissions[$prefix][] = $permission;
+        }
+        return $groupedPermissions;
     }
 }

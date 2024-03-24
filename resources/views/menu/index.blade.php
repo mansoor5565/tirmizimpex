@@ -98,7 +98,7 @@
         @endif
         @if (session()->has('DeleteSuccess'))
             <script>
-                swal("Deleted!", "Accessory has been deleted successfully.", "success");
+                swal("Deleted!", "Menu has been deleted successfully.", "success");
             </script>
         @endif
 
@@ -106,7 +106,7 @@
             function deleteMenuItem(id) {
                 swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this accessory!",
+                        text: "Once deleted, you will not be able to recover this Menu!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,

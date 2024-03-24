@@ -12,7 +12,8 @@
         </nav>
     </div><!-- End Page Title -->
     <section class="section">
-        <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data" class="row g-3">
+        <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data"
+            class="row g-3">
             @csrf
             @method('PUT')
             <div class="col-lg-8">
@@ -84,10 +85,52 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Users Permission</h5>
+                        <div class="row g-3 mt-3">
+                            @foreach ($groupPermission as $prefix => $permissions)
+                                <div class="col-lg-4">
+                                    <div class="card px-3">
+                                        <h5 class="card-title">{{ ucfirst($prefix) }}</h5>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <input type="checkbox" class="select-all" data-group="{{ $prefix }}">
+                                                <label>Select All</label>
+                                            </li>
+                                            @foreach ($permissions as $permission)
+                                                <li class="">
+                                                    <input type="checkbox" name="permissions[]"
+                                                        data-group="{{ $prefix }}" value="{{ $permission->name }}"
+                                                        {{ in_array($permission->name, $userPermissions) ? 'checked' : '' }}>
+                                                    {{ $permission->name }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
             </div>
         </form>
     </section>
+    @push('script')
+        <script>
+            $(document).ready(function() {
+                $('.select-all').change(function() {
+                    var group = $(this).data('group');
+                    $('input[name="permissions[]"][data-group="' + group + '"]').prop('checked', $(this).prop(
+                        'checked'));
+                });
+            });
+        </script>
+    @endpush
 @endsection

@@ -71,6 +71,31 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Users Permission</h5>
+                        <div class="row g-3 mt-3">
+                            @foreach ($groupPermission as $prefix => $permissions)
+                                <div class="col-lg-4">
+                                    <div class="card px-3">
+                                        <h5 class="card-title">{{ ucfirst($prefix) }}</h5>
+                                        <ul class="list-unstyled">
+                                            @foreach ($permissions as $permission)
+                                                <li class="">
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $permission->name }}">
+                                                    {{ $permission->name }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
