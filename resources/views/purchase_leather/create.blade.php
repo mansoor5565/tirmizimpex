@@ -13,59 +13,85 @@
     </div><!-- End Page Title -->
     <section class="section">
         <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Create</h5>
-                        <form action="/purchase_leather" method="POST" class="row g-3">
-                            @csrf
-                            <div class="col-12">
-                                
-                                <label for="leatherSelect" class="form-label">Choose Leather</label>
-                                <select class="form-select mb-2" id="leatherSelect" name="leather[]" multiple>
-                                    @foreach ($leathers_color as $leather_color)
-                                        <option value="{{ $leather_color->id }}" data-quantity="{{ $leather_color->quantity }}">{{ $leather_color->leathers->type.' '.$leather_color->color }}</option>
-                                    @endforeach
-                                </select>
-                                <span class='text-danger'>
-                                    @error('leather')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            
-                                <div class="selected-leather-container mt-3">
-                                    <!-- Selected leather colors will be displayed here -->
+            <form action="/purchase_leather" method="POST" class="row g-3">
+                @csrf
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Create</h5>
+
+                            <div class="row g-3">
+                                <div class="col-12">
+
+                                    <label for="leatherSelect" class="form-label">Choose Leather</label>
+                                    <select class="form-select mb-2" id="leatherSelect" name="leather[]" multiple>
+                                        @foreach ($leathers_color as $leather_color)
+                                            <option value="{{ $leather_color->id }}"
+                                                data-quantity="{{ $leather_color->quantity }}">
+                                                {{ $leather_color->leathers->type . ' ' . $leather_color->color }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class='text-danger'>
+                                        @error('leather')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+
+                                    <div class="selected-leather-container mt-3">
+                                        <!-- Selected leather colors will be displayed here -->
+                                    </div>
                                 </div>
+                                <div class="col-12">
+                                    <select name="leather_vendors" class="form-control leather-vendor">
+                                        <option value="">Select Vendor</option>
+                                        @foreach ($leathervendor as $vendor)
+                                            <option value="{{ $vendor->id }}">
+                                                {{ $vendor->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <span class='text-danger'>
+                                        @error('leather_vendors')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                </div>
+
                             </div>
-                            <div class="col-12">
-                                <select name="leather_vendors" class="form-control leather-vendor">
-                                    <option value="">Select Vendor</option>
-                                    @foreach($leathervendor as $vendor)
-                                        <option value="{{ $vendor->id }}">
-                                            {{ $vendor->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <span class='text-danger'>
-                                    @error('leather_vendors')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                            
-                            
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+
+                                @foreach ($leatherModels as $model)
+                                    <div class="col-12">
+                                        <div class="leather-model" id="model_{{ $model->id }}">
+                                            <span class="model-label"
+                                                data-model-id="{{ $model->id }}">{{ $model->type }}</span>
+                                        </div>
+                                        <input type="hidden" name="models[{{ $model->id }}][quantity]"
+                                            class="quantity-input">
+                                        <input type="hidden" name="models[{{ $model->id }}][cost]" class="cost-input">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const selectLeather = document.getElementById('leatherSelect');
             const selectedLeatherContainer = document.querySelector('.selected-leather-container');
@@ -121,6 +147,5 @@
                 }
             };
         });
-    </script>
-    
+    </script> --}}
 @endsection

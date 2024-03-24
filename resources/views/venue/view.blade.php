@@ -36,17 +36,23 @@
                                         <td>{{ $venues->name }}</td>
                                         <td>{{ $venues->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <a href="/venue/show/{{$venues->id}}" class="action-btn btn btn-success mr-2">
-                                                <i class="bi bi-eye"></i> <span>View</span>
-                                            </a>
+                                            @can('venues.view')
+                                                <a href="/venue/show/{{$venues->id}}" class="action-btn btn btn-success mr-2">
+                                                    <i class="bi bi-eye"></i> <span>View</span>
+                                                </a>
+                                            @endcan
+                                            @can('venues.edit')
                                             <a href="/venue/edit/{{ $venues->id }}"
                                                 class="action-btn btn btn-warning mr-2 text-white">
                                                 <i class="bi bi-pencil-square"></i> <span>Edit</span>
                                             </a>
-                                            <a href="javascript:void(0)" onclick="deleteVenue({{ $venues->id }})"
-                                                class="action-btn btn btn-danger">
-                                                <i class="bi bi-trash"></i><span>Delete</span>
-                                            </a>
+                                            @endcan
+                                            @can('venues.delete')
+                                                <a href="javascript:void(0)" onclick="deleteVenue({{ $venues->id }})"
+                                                    class="action-btn btn btn-danger">
+                                                    <i class="bi bi-trash"></i><span>Delete</span>
+                                                </a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

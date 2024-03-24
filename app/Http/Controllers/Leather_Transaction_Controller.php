@@ -17,7 +17,7 @@ class Leather_Transaction_Controller extends Controller
         $data=compact('leathertransaction');
         return view('leather_transaction.view')->with($data);
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      */
