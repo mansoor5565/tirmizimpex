@@ -60,13 +60,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product/show/{id}', [ProductController::class, 'show']);
 
     //venue Routes
-    Route::resource('/venue', VenueController::class);
-    Route::get('/venue/create', [VenueController::class, 'create']);
-    Route::get('/venue/delete/{id}', [VenueController::class, 'destroy']);
-    Route::get('/venue/edit/{id}', [VenueController::class, 'edit']);
-    Route::get('/venue/show/{id}', [VenueController::class, 'show']);
-    Route::post('/venue/update/{id}', [VenueController::class, 'update']);
-
+    Route::middleware('permission:venues.list')->group(function(){
+        Route::resource('/venue', VenueController::class);
+        Route::get('/venue/create', [VenueController::class, 'create']);
+        Route::get('/venue/delete/{id}', [VenueController::class, 'destroy']);
+        Route::get('/venue/edit/{id}', [VenueController::class, 'edit']);
+        Route::get('/venue/show/{id}', [VenueController::class, 'show']);
+        Route::post('/venue/update/{id}', [VenueController::class, 'update']);
+    });
     //purchase_leather
     Route::resource('/purchase_leather', Purchase_Leather_Controller::class);
     Route::get('/purchase_leather/create', [Purchase_Leather_Controller::class, 'create']);
@@ -110,16 +111,17 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/leather_transaction', Leather_Transaction_Controller::class);
     Route::get('/leather_transaction/show/{id}', [Leather_Transaction_Controller::class, 'show']);
 
-
     //Menu Management
-    Route::resource('menu', Menu::class);
-    Route::get('/menu/delete/{id}', [Menu::class, 'destroy']);
-
+    Route::middleware('permission:menu.list')->group(function(){
+        Route::resource('menu', Menu::class);
+        Route::get('/menu/delete/{id}', [Menu::class, 'destroy']);
+    });
     //user registeration
     Route::middleware('permission:users.list')->group(function () {
         Route::resource('users', User::class);
         Route::get('/users/delete/{id}', [User::class, 'destroy']);
     });
+    //permission registeration
     Route::middleware('permission:permissions.list')->group(function () {
         Route::resource('/permissions', PermissionController::class);
         Route::get('/permissions/delete/{id}', [PermissionController::class, 'destroy']);

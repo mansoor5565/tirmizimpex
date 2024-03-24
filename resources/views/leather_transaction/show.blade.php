@@ -52,12 +52,12 @@
                                 <span class="details-label">Transaction Type:</span>
                                 <span class="details-value">{{$leathertransaction->transaction_type}}</span>
                             </div>
-                            <div class="details-row">
+                            {{-- <div class="details-row">
                                 <span class="details-label">Remaining Balance:</span>
                                 @foreach ($vendorBillSummaries as $vendorbill)
                                     <span class="details-value"> Leather Vendor ID:{{  $vendorbill->leather_vendor_id }} Total Remaining Balance:{{ $vendorbill->total_remaining_balance }}</span>
                                 @endforeach
-                            </div>
+                            </div> --}}
                             
                             <div class="details-row">
                                 <span class="details-label">Transaction Date:</span>

@@ -12,7 +12,7 @@ class Leather_Transaction_Model extends Model
     protected $primarykey="id";
     protected $fillable=['purchase_leather_id','transaction_date','transaction_type'];
 
-    public function purchaseleather(){
+    public function purchaseLeatherInfo(){
         return $this->belongsTo(Purchase_Leather_Model::class,'purchase_leather_id');
     }
 }
