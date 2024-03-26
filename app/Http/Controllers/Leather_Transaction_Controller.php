@@ -13,7 +13,7 @@ class Leather_Transaction_Controller extends Controller
     public function index()
     {
         $leathertransaction=Leather_Transaction_Model::with('purchaseLeatherInfo.purchaseleathercolor.leatherColors.leathers')->get();
-        dd($leathertransaction);
+    
         $data=compact('leathertransaction');
         return view('leather_transaction.view')->with($data);
     }

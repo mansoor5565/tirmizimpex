@@ -62,27 +62,6 @@
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row g-3">
-
-                                @foreach ($leatherModels as $model)
-                                    <div class="col-12">
-                                        <div class="leather-model" id="model_{{ $model->id }}">
-                                            <span class="model-label"
-                                                data-model-id="{{ $model->id }}">{{ $model->type }}</span>
-                                        </div>
-                                        <input type="hidden" name="models[{{ $model->id }}][quantity]"
-                                            class="quantity-input">
-                                        <input type="hidden" name="models[{{ $model->id }}][cost]" class="cost-input">
-                                    </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -91,7 +70,7 @@
         </div>
     </section>
 
-    {{-- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const selectLeather = document.getElementById('leatherSelect');
             const selectedLeatherContainer = document.querySelector('.selected-leather-container');
@@ -147,5 +126,5 @@
                 }
             };
         });
-    </script> --}}
+    </script>
 @endsection

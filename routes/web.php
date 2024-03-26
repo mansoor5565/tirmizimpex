@@ -12,7 +12,8 @@ use App\Http\Controllers\Accessories_Inventory_Controller;
 use App\Http\Controllers\Leather_Inventory_Controller;
 use App\Http\Controllers\Leather_Vendor_Controller;
 use App\Http\Controllers\Leather_Transaction_Controller;
-use App\Http\Controllers\Vendor_Bill_Controller;
+use App\Http\Controllers\Leather_Vendor_Bill_Controller;
+
 use App\Http\Controllers\Menu;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\User;
@@ -110,6 +111,9 @@ Route::middleware(['auth'])->group(function () {
     //leather_transaction
     Route::resource('/leather_transaction', Leather_Transaction_Controller::class);
     Route::get('/leather_transaction/show/{id}', [Leather_Transaction_Controller::class, 'show']);
+    //leather_vendor_bill
+    Route::resource('/leather_vendor_bill', Leather_Vendor_Bill_Controller::class);
+    Route::get('/leather_vendor_bill/pay/{id}', [Leather_Vendor_Bill_Controller::class, 'pay']);
 
     //Menu Management
     Route::middleware('permission:menu.list')->group(function(){

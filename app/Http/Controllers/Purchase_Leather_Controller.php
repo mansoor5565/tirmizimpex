@@ -53,10 +53,7 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather=new Purchase_Leather_Model;
             $purchase_leather_color=new Purchase_Leather_Color_Model;
             $leathertransaction=new Leather_Transaction_Model;
-<<<<<<< HEAD
             
-=======
->>>>>>> 66a95ddc96f6691193aee7a9f83284f5fa66aa29
 
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             $purchase_leather_color->leather_color_id=$leathercolorid;
@@ -106,10 +103,7 @@ class Purchase_Leather_Controller extends Controller
             $leathertransaction->description="Leather has been Purchased";
             $purchase_leather_color->save();
             $leathertransaction->save();
-<<<<<<< HEAD
             
-=======
->>>>>>> 66a95ddc96f6691193aee7a9f83284f5fa66aa29
         }
         $submitSuccess = true;
 
@@ -184,7 +178,6 @@ class Purchase_Leather_Controller extends Controller
             $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
             $purchase_leather->total_cost=$total;
             $leathertransaction->amount=$purchase_leather->total_cost;
-<<<<<<< HEAD
             //leather inventory
             if ($leather_inventory) {
                 $leather_inventory->quantity_on_hand += $purchase_leather_color->quantity;
@@ -194,9 +187,6 @@ class Purchase_Leather_Controller extends Controller
             }
             $purchase_leather->save();
             
-=======
-            $purchase_leather->save();
->>>>>>> 66a95ddc96f6691193aee7a9f83284f5fa66aa29
             //purchase leather color
             $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
             //leather transaction
@@ -206,10 +196,7 @@ class Purchase_Leather_Controller extends Controller
             $leathertransaction->description="Leather has been Purchased";
             $purchase_leather_color->save();
             $leathertransaction->save();
-<<<<<<< HEAD
             
-=======
->>>>>>> 66a95ddc96f6691193aee7a9f83284f5fa66aa29
         }
         $updateSuccess = true;
         return redirect('/purchase_leather')->with('updateSuccess', $updateSuccess);
