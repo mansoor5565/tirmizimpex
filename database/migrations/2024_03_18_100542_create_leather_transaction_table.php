@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("transaction_date");
             $table->enum('transaction_type', ['purchase', 'payment']);
             $table->integer("amount");
-            $table->string("description");
+            $table->string("description")->nullable();
             $table->timestamps();
         });
     }
