@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('purchase_leather_id');
             $table->foreign('purchase_leather_id')->references('id')->on('purchase_leather')->onDelete('cascade');
             $table->string("transaction_date");
-            $table->enum('transaction_type', ['purchase', 'payment']);
+            $table->enum('transaction_type', ['purchase', 'payment', 'return']);
             $table->integer("amount");
             $table->string("description")->nullable();
             $table->timestamps();

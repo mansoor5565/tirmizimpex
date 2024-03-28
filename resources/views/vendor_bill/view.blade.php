@@ -16,40 +16,28 @@
                             <tr>
                                 <th>Vendor Name</th>
                                 <th>Remaining Balance</th>
-                                <th>Transaction Type</th>
-                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-    // Group the leather_vendor_bill collection by leather_vendor_id
-    $groupedLeatherVendorBills = $leather_vendor_bill->groupBy('purchaseLeatherInfo.leather_vendor_id');
-@endphp
-@foreach ($groupedLeatherVendorBills as $leather_vendor_id => $group)
-    <tr>
-        <td>
-            @foreach($leather_vendor_bill->unique('purchaseLeatherInfo.leathervendors.name') as $leather_vendor_bills)
-                {{ $leather_vendor_bills->purchaseLeatherInfo->leathervendors->name }}
-            @endforeach
-            {{ $leather_vendor_id }}
-        </td>        
-        <td>
-            {{-- Calculate the total cost for the current leather vendor ID group --}}
-            {{ $group->sum('purchaseLeatherInfo.total_cost') }}
-        </td>
-        <td>{{ $group->first()->transaction_type }}</td>
-        <td>{{ $group->first()->created_at->diffForHumans() }}</td>
-        <td>
-            <a href="/leather_vendor_bill/pay/{{ $leather_vendor_id }}"
-                class="action-btn btn btn-primary mr-2">
-                 <span>Pay Now</span>
-            </a>
-        </td>
-    </tr>
-@endforeach
-                        
-</tbody>
+                            @foreach ($leather_vendor_bills as $leather_vendor_bill)
+                                <tr>
+                                    <td>
+                                        {{ $leather_vendor_bill->name }}
+                                    </td>
+                                    <td>
+                                        {{ $leather_vendor_bill->purchase_leather->sum('total_cost') - $leather_vendor_bill->purchase_leather->flatMap->leathertransaction->where('transaction_type', 'payment')->sum('amount') -$leather_vendor_bill->purchase_leather->flatMap->leathertransaction->where('transaction_type', 'return')->sum('amount')}}
+                                    </td>
+                                    <td>
+                                        <a href="/leather_vendor_bill/pay/{{ $leather_vendor_bill->id }}"
+                                            class="action-btn btn btn-primary mr-2">
+                                            <span>Pay Now</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
                     </table>
 
 

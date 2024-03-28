@@ -15,4 +15,5 @@ class Leather_Transaction_Model extends Model
     public function purchaseLeatherInfo(){
         return $this->belongsTo(Purchase_Leather_Model::class,'purchase_leather_id');
     }
+
 }
