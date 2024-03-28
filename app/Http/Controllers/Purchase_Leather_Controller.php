@@ -48,64 +48,6 @@ class Purchase_Leather_Controller extends Controller
                 'purchase' => 'required',
                 'leather_vendors' => 'required'
             ]
-<<<<<<< HEAD
-            );
-        foreach ($request->leather  as $key => $leathercolorid) {
-            $purchase_leather=new Purchase_Leather_Model;
-            $purchase_leather_color=new Purchase_Leather_Color_Model;
-            $leathertransaction=new Leather_Transaction_Model;
-            
-
-            $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
-            $purchase_leather_color->leather_color_id=$leathercolorid;
-           if(isset($request->leather_quantities[$key])){
-                $purchase_leather_color->quantity=$request->leather_quantities[$key];
-            }
-            else{
-                $purchase_leather->quantity = 1;
-            }
-            if(isset($request->leather_costs[$key])){
-                $purchase_leather_color->cost_per_unit=$request->leather_costs[$key];
-            }
-            else{
-                $purchase_leather->cost_per_unit = 1;
-            }
-            $purchase_leather->leather_vendor_id=$request['leather_vendors'];
-            $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
-            $purchase_leather->total_cost=$total;
-            $leathertransaction->amount=$purchase_leather->total_cost;
-            //leather inventory 
-            $leather_inventory = Leather_Inventory_Model::where('leathercolor_id', $leathercolorid)->first();
-
-            if ($leather_inventory) {
-                $leather_inventory->quantity_on_hand += $purchase_leather_color->quantity;
-                $leather_inventory->save();
-            } else {
-                $leather_inventory = new Leather_Inventory_Model();
-                $lot_no='LT'.''.rand(1,1000);
-                if($lot_no==$leather_inventory->lot_no){
-                    $lot_no='LT'.''.rand(1,1000);
-                }
-                else{
-                    $lot_no;
-                }
-                $leather_inventory->leathercolor_id = $leathercolorid;
-                $leather_inventory->lot_no=$lot_no;
-                $leather_inventory->quantity_on_hand = $purchase_leather_color->quantity;
-                $leather_inventory->save();                           
-            }
-            $purchase_leather->save();
-            //purchase leather color
-            $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
-            //leather transaction
-            $leathertransaction->transaction_date=$purchase_leather->created_at;
-            $leathertransaction->purchase_leather_id=$purchase_leather->id;
-            $leathertransaction->transaction_type='purchase';
-            $leathertransaction->description="Leather has been Purchased";
-            $purchase_leather_color->save();
-            $leathertransaction->save();
-            
-=======
         );
         //purchase leather process
         $purchases = array_values($request->purchase);
@@ -122,7 +64,6 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather_color->cost_per_unit = $purchase['cost'];
             $purchase_leather_color->quantity = $purchase['quantity'];
             $purchase_leather_color->save();
->>>>>>> 68158388dd0e4a8947bdb9fcd479fbeeffe7eef0
         }
         //transaction commands
         $leather_transaction = new Leather_Transaction_Model;
@@ -153,14 +94,14 @@ class Purchase_Leather_Controller extends Controller
         //     $purchase_leather->total_cost = $total;
         //     $leathertransaction->amount = $purchase_leather->total_cost;
         //     //leather inventory 
-        //     $leather_inventory = Leather_Inventory_Model::where('leathercolor_id', $leathercolorid)->first();
+            $leather_inventory = Leather_Inventory_Model::where('leathercolor_id', $purchase['leather_color_id'])->first();
 
-        //     if ($leather_inventory) {
-        //         $leather_inventory->quantity_on_hand += $purchase_leather_color->quantity;
-        //         $leather_inventory->save();
-        //     } else {
+            if ($leather_inventory) {
+                $leather_inventory->quantity_on_hand += $purchase_leather_color->quantity;
+                $leather_inventory->save();
+            } else {
 
-        //     }
+            }
 
         //     $purchase_leather->save();
         //     //purchase leather color
@@ -220,53 +161,6 @@ class Purchase_Leather_Controller extends Controller
                 'purchase' => 'required',
                 'leather_vendors' => 'required'
             ]
-<<<<<<< HEAD
-            );
-        foreach ($request->leather  as $key => $leathercolorid) {
-            $purchase_leather=Purchase_Leather_Model::find($id);
-            $purchase_leather_color = Purchase_Leather_Color_Model::where('purchase_leather_id', $id)->first();
-            $leathertransaction=Leather_Transaction_Model::where('purchase_leather_id', $id)->first();
-            $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
-            $purchase_leather_color->leather_color_id=$leathercolorid;
-            $leather_inventory = Leather_Inventory_Model::where('leathercolor_id', $leathercolorid)->first();
-           if(isset($request->leather_quantities[$key])){
-                $purchase_leather_color->quantity=$request->leather_quantities[$key];
-            }
-            else{
-                $purchase_leather->quantity = 1;
-            }
-            if(isset($request->leather_costs[$key])){
-                $purchase_leather_color->cost_per_unit=$request->leather_costs[$key];
-            }
-            else{
-                $purchase_leather->cost_per_unit = 1;
-            }
-            if(isset($request->leather_vendors[$key])){
-                $purchase_leather->leather_vendor_id=$request->leather_vendors[$key];
-            }
-            $total= $purchase_leather_color->cost_per_unit * $purchase_leather_color->quantity;
-            $purchase_leather->total_cost=$total;
-            $leathertransaction->amount=$purchase_leather->total_cost;
-            //leather inventory
-            if ($leather_inventory) {
-                $leather_inventory->quantity_on_hand += $purchase_leather_color->quantity;
-                $leather_inventory->save();
-            } else {
-                
-            }
-            $purchase_leather->save();
-            
-            //purchase leather color
-            $purchase_leather_color->purchase_leather_id=$purchase_leather->id;
-            //leather transaction
-            $leathertransaction->transaction_date=$purchase_leather->created_at;
-            $leathertransaction->purchase_leather_id=$purchase_leather->id;
-            $leathertransaction->transaction_type='purchase';
-            $leathertransaction->description="Leather has been Purchased";
-            $purchase_leather_color->save();
-            $leathertransaction->save();
-            
-=======
         );
         //purchase leather process
         $purchases = array_values($request->purchase);
@@ -284,7 +178,6 @@ class Purchase_Leather_Controller extends Controller
             $purchase_leather_color->cost_per_unit = $purchase['cost'];
             $purchase_leather_color->quantity = $purchase['quantity'];
             $purchase_leather_color->save();
->>>>>>> 68158388dd0e4a8947bdb9fcd479fbeeffe7eef0
         }
         //transaction commands
         $leather_transaction = Leather_Transaction_Model::where('purchase_leather_id',$id)->first();

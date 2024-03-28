@@ -37,16 +37,8 @@
                         <div class="col-12">
                             <div class="details-container">
                               <div class="details-row">
-                                <span class="details-label">Leather Color:</span>
-                                <span class="details-value">{{$purchase_leather_color->leatherColors->color ." ".$purchase_leather_color->leather_color_id }}</span>
-                            </div>
-                            <div class="details-row">
-                                <span class="details-label">Quantity:</span>
-                                <span class="details-value">{{$purchase_leather_color->quantity}}</span>
-                            </div>
-                            <div class="details-row">
-                                <span class="details-label">Cost/Unit:</span>
-                                <span class="details-value">{{$purchase_leather_color->cost_per_unit}}</span>
+                                <span class="details-label">Purchase ID:</span>
+                                <span class="details-value">{{$purchase_leather_color->purchaseleathers->id }}</span>
                             </div>
                             <div class="details-row">
                                 <span class="details-label">Total Cost:</span>
@@ -54,7 +46,7 @@
                             </div>
                             <div class="details-row">
                                 <span class="details-label">Vendor:</span>
-                                <span class="details-value">{{ $purchase_leather_color->purchaseleathers->leathervendors->name ." ".$purchase_leather_color->purchaseleathers->leather_vendor_id}}</span>
+                                <span class="details-value">{{$purchase_leather_color->purchaseleathers->leather_vendor_id}}</span>
                             </div>
                             </div>
                           </div>

@@ -72,8 +72,6 @@
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
-<<<<<<< HEAD
-=======
 
                             </div>
                         </div>
@@ -84,7 +82,6 @@
                         <div class="card-body">
                             <div class="row g-3" id="purchase-cost-quantity-option-div">
 
->>>>>>> 68158388dd0e4a8947bdb9fcd479fbeeffe7eef0
                             </div>
                         </div>
                     </div>
@@ -96,65 +93,6 @@
         let selected_leather_color_id = [];
         modelDiv = $('#purchase-cost-quantity-option-div');
 
-<<<<<<< HEAD
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const selectLeather = document.getElementById('leatherSelect');
-            const selectedLeatherContainer = document.querySelector('.selected-leather-container');
-            let selectedLeather = []; // Array to store selected leather
-    
-            // Add event listener to each option element
-            selectLeather.querySelectorAll('option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const leatherName = option.textContent;
-                    const leatherId = option.value;
-                    const leatherQuantity = option.dataset.quantity;
-                    const index = selectedLeather.findIndex(leather => leather.id === leatherId);
-    
-                    if (option.selected && index === -1) {
-                        selectedLeather.push({
-                            id: leatherId,
-                            name: leatherName,
-                            quantity: leatherQuantity,
-                            cost: '', // Initialize cost as empty string
-                            vendor: '' // Initialize vendor as empty string
-                        });
-                    } else if (!option.selected && index !== -1) {
-                        selectedLeather.splice(index, 1);
-                    }
-    
-                    updateSelectedLeather();
-                });
-            });
-    
-            function updateSelectedLeather() {
-                selectedLeatherContainer.innerHTML = ''; // Clear the container
-    
-                selectedLeather.forEach(leather => {
-                    const leatherHTML = `
-                        <div class="selected-leather" data-id="${leather.id}">
-                            ${leather.name}: 
-                            <input type="number" name="leather_quantities[]" class="form-control leather-quantity" placeholder="Quantity" value="${leather.quantity}">
-                            <input type="number" name="leather_costs[]" class="form-control leather-cost" placeholder="Cost" value="${leather.cost}">
-                            <button type="button" class="btn btn-danger cancel-btn" onclick="cancelLeatherSelection(this)"><i class="bi bi-trash"></i></button>
-                        </div>
-                    `;
-                    selectedLeatherContainer.innerHTML += leatherHTML;
-                });
-            }
-    
-            window.cancelLeatherSelection = function(buttonElement) {
-                const selectedLeatherDiv = buttonElement.parentElement;
-                const leatherId = selectedLeatherDiv.dataset.id;
-                const index = selectedLeather.findIndex(leather => leather.id === leatherId);
-                if (index !== -1) {
-                    selectedLeather.splice(index, 1);
-                    selectedLeatherDiv.remove(); // Remove the selected leather from the container
-                }
-            };
-        });
-    </script>
-=======
         function show(element, leather_color_id, leather_name) {
             if (selected_leather_color_id.includes(leather_color_id)) {
                 swal("Already Selected!", "Already Selected", "warning");
@@ -190,5 +128,4 @@
         }
     </script>
     <script></script>
->>>>>>> 68158388dd0e4a8947bdb9fcd479fbeeffe7eef0
 @endsection
